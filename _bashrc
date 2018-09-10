@@ -1,0 +1,33 @@
+[[ $- != *i* ]] && return
+
+shopt -s checkwinsize globstar histappend
+set -o histexpand
+
+if ! shopt -oq posix; then
+  if [ -r /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -r /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
+fi
+
+if [ -r "$XDG_CONFIG_HOME/ls_colors" ]; then
+  eval $(dircolors -b "$XDG_CONFIG_HOME/ls_colors")
+fi
+
+PS1='\[\e[1m\]\w \$\[\e[0m\] '
+
+alias ls='ls --color=auto'
+alias ll='ls -lh'
+alias la='ls -A'
+alias lla='ls -Alh'
+
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
+alias pager='less -cRS'
+
+alias bc='bc -lq'
+alias gdb='gdb -q'
+alias ocaml="rlwrap --history-filename=${XDG_CACHE_HOME}/ocaml_history --histsize=1000 ocaml -no-version"
