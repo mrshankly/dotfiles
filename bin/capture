@@ -1,0 +1,44 @@
+#!/bin/sh
+
+set -e
+
+cmdname="$(basename "${0}")"
+
+_timestamp="$(date '+%Y%m%dT%H%M%S')"
+cpt_out="${HOME}/capture_${_timestamp}.mkv"
+cpt_log="${HOME}/var/log/ffmpeg/capture_${_timestamp}.log"
+
+cpt_fps="60"
+cpt_offset="0,0"
+cpt_resolution="$(xdpyinfo | awk '/dimensions/{print $2}')"
+
+usage() {
+	printf "usage: %s [-s] [-r RATE] [-o OUTPUT]\n" "${cmdname}" 1>&2
+	exit 1
+}
+
+while getopts 'o:r:s' o; do
+	case "${o}" in
+		o) cpt_out="${OPTARG}" ;;
+		r) cpt_fps="${OPTARG}" ;;
+		s) scrn_select=true    ;;
+		*) usage               ;;
+	esac
+done && shift $((OPTIND - 1)) && test $# -ne 0 && usage
+
+if [ "${scrn_select}" = true ]; then
+	read -r x y w h <<-EOF
+		$(slop -f '%x %y %w %h')
+	EOF
+	cpt_offset="${x},${y}"
+	cpt_resolution="${w}x${h}"
+fi
+
+mkdir -p -- "$(dirname "${cpt_log}")"
+
+ffmpeg -loglevel error                                                                         \
+	-hwaccel vaapi -hwaccel_output_format vaapi -vaapi_device '/dev/dri/renderD128'            \
+	-threads 4 -probesize 10M -framerate "${cpt_fps}" -vsync 1 -thread_queue_size 1024         \
+	-f x11grab -s "${cpt_resolution}" -r "${cpt_fps}" -i ":0.0+${cpt_offset}"                  \
+	-f pulse -ac 2 -channel_layout stereo -i default -c:a libopus -vbr on -compression_level 8 \
+	-vf 'format=nv12,hwupload' -c:v h264_vaapi "${cpt_out}" 1> "${cpt_log}" 2> "${cpt_log}"

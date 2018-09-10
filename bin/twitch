@@ -1,0 +1,26 @@
+#!/bin/sh
+
+set -e
+
+cmdname="$(basename "${0}")"
+
+usage() {
+	printf "usage: %s [-l] [-f FORMAT] CHANNEL\n" "${cmdname}" 1>&2
+	exit 1
+}
+
+while getopts 'lf:' o; do
+	case "${o}" in
+		l) lst=true                      ;;
+		f) fmt="--ytdl-format ${OPTARG}" ;;
+		*) usage                         ;;
+	esac
+done && shift $((OPTIND - 1)) && test $# -ne 1 && usage
+
+url="https://www.twitch.tv/${1}"
+
+if [ "${lst}" = true ]; then
+	youtube-dl --list-formats "${url}"
+else
+	mpv ${fmt} "${url}"
+fi
