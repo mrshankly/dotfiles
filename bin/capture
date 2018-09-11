@@ -36,9 +36,9 @@ fi
 
 mkdir -p -- "$(dirname "${cpt_log}")"
 
-ffmpeg -loglevel error                                                                         \
-	-hwaccel vaapi -hwaccel_output_format vaapi -vaapi_device '/dev/dri/renderD128'            \
-	-threads 4 -probesize 10M -framerate "${cpt_fps}" -vsync 1 -thread_queue_size 1024         \
-	-f x11grab -s "${cpt_resolution}" -r "${cpt_fps}" -i ":0.0+${cpt_offset}"                  \
-	-f pulse -ac 2 -channel_layout stereo -i default -c:a libopus -vbr on -compression_level 8 \
-	-vf 'format=nv12,hwupload' -c:v h264_vaapi "${cpt_out}" 1> "${cpt_log}" 2> "${cpt_log}"
+ffmpeg -loglevel error                                                                            \
+       -hwaccel vaapi -hwaccel_output_format vaapi -vaapi_device '/dev/dri/renderD128'            \
+       -threads 4 -probesize 10M -framerate "${cpt_fps}" -vsync 1 -thread_queue_size 1024         \
+       -f x11grab -s "${cpt_resolution}" -r "${cpt_fps}" -i ":0.0+${cpt_offset}"                  \
+       -f pulse -ac 2 -channel_layout stereo -i default -c:a libopus -vbr on -compression_level 8 \
+       -vf 'format=nv12,hwupload' -c:v h264_vaapi "${cpt_out}" 1> "${cpt_log}" 2> "${cpt_log}"
