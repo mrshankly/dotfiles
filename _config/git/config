@@ -1,0 +1,23 @@
+[user]
+	name = João Marques
+	useConfigOnly = true
+
+[core]
+	autoclrf = false
+	whitespace = cr-at-eol
+
+[color]
+	branch = auto
+	diff = auto
+	interactive = auto
+	status = auto
+
+[fetch]
+	prune = true
+
+[push]
+	default = simple
+
+[alias]
+	l = log --graph --decorate --pretty oneline --abbrev-commit
+	la = log --graph --decorate --pretty oneline --abbrev-commit --all
