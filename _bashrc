@@ -28,6 +28,9 @@ alias egrep='egrep --color=auto'
 
 alias pager='less -cRS'
 
+alias tmp='mkdir /tmp/$$ ; cd /tmp/$$'
+alias rmtmp='rm -rf /tmp/$$'
+
 alias bc='bc -lq'
 alias gdb="gdb -q -nh -x ${XDG_CONFIG_HOME}/gdb/init"
 alias ocaml="rlwrap --history-filename=${XDG_CACHE_HOME}/ocaml_history --histsize=1000 ocaml -no-version"
