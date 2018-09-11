@@ -33,4 +33,4 @@ alias rmtmp='rm -rf /tmp/$$'
 
 alias bc='bc -lq'
 alias gdb="gdb -q -nh -x ${XDG_CONFIG_HOME}/gdb/init"
-alias ocaml="rlwrap --history-filename=${XDG_CACHE_HOME}/ocaml_history --histsize=1000 ocaml -no-version"
+alias ocaml='rlwrap --histsize=1000 --prompt-colour=Black ocaml -no-version'
