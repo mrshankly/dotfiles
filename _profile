@@ -1,0 +1,19 @@
+export EDITOR=vim
+export PAGER=less
+export BROWSER=firefox
+
+export MANWIDTH=80
+export HISTSIZE=10000
+export HISTCONTROL=ignoreboth:erasedups
+
+export LESSHISTFILE="/dev/null"
+export LESSHISTSIZE=0
+
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CACHE_HOME="$HOME/.cache"
+
+export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
+export RLWRAP_HOME="$XDG_CACHE_HOME/rlwrap"
+
+export PATH="$HOME/.local/bin:$PATH:/usr/local/sbin:/usr/sbin:/sbin"
