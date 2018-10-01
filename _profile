@@ -15,5 +15,6 @@ export XDG_CACHE_HOME="$HOME/.cache"
 
 export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
 export RLWRAP_HOME="$XDG_CACHE_HOME/rlwrap"
+export LEDGER_FILE="$HOME/usr/ledger/journal.ledger"
 
 export PATH="$HOME/.local/bin:$PATH:/usr/local/sbin:/usr/sbin:/sbin"
