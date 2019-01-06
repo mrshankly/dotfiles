@@ -17,3 +17,12 @@
 (setq make-backup-files nil)
 (setq auto-save-default nil)
 (setq auto-save-list-file-prefix nil)
+
+;; Set site-lisp local path.
+(setq site-lisp-dir
+      (expand-file-name "site-lisp" user-emacs-directory))
+
+(add-to-list 'load-path site-lisp-dir)
+
+;; Standard ML
+(require 'sml-mode)
