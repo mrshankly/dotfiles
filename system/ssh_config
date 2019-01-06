@@ -1,6 +1,10 @@
 Host github.com
 	IdentityFile ~/.ssh/id_ed25519_github
 
+Host bitbucket.org
+	User git
+	IdentityFile ~/.ssh/id_ed25519_bitbucket
+
 Host *
 	UseRoaming no
 	HashKnownHosts yes
