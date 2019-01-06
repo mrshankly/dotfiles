@@ -33,7 +33,7 @@ alias rmtmp='rm -rf /tmp/$$'
 
 alias bc='bc -lq'
 alias et='emacsclient --tty --quiet'
-alias ec='emacsclient --create-frame --quiet'
+alias ec='emacsclient --create-frame --no-wait --quiet'
 alias gdb="gdb -q -nh -x ${XDG_CONFIG_HOME}/gdb/init"
 alias tmux="tmux -f ${XDG_CONFIG_HOME}/tmux/tmux.conf"
 alias ledger="ledger --init-file ${XDG_CONFIG_HOME}/ledger/ledgerrc"
