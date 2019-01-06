@@ -1,4 +1,4 @@
-export EDITOR=vim
+export EDITOR=nano
 export PAGER=less
 export BROWSER=firefox
 
@@ -18,3 +18,6 @@ export RLWRAP_HOME="$XDG_CACHE_HOME/rlwrap"
 export LEDGER_FILE="$HOME/usr/ledger/journal.ledger"
 
 export PATH="$HOME/.local/bin:$PATH:/usr/local/sbin:/usr/sbin:/sbin"
+
+# Initialize opam.
+test -r "$HOME/.opam/opam-init/init.sh" && . "$HOME/.opam/opam-init/init.sh" > /dev/null 2>&1 || true
