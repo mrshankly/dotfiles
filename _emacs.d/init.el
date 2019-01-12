@@ -31,8 +31,8 @@
 (add-to-list 'custom-theme-load-path themes-dir)
 
 ;; Set theme and font.
-(load-theme 'gruvbox-dark-hard t)
-(set-face-attribute 'default nil :font "Iosevka Term SS05-11")
+(load-theme 'gruvbox-dark-medium t)
+(set-face-attribute 'default nil :font "Iosevka Term SS05-11:weight=demibold")
 
 ;; Show line numbers and highlight current line.
 (global-display-line-numbers-mode)
