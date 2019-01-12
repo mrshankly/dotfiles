@@ -45,7 +45,7 @@ mkdir -p "${HOME}/var/dl"  \
          "${HOME}/var/tr"
 
 if yn 'Link binaries?'; then
-	for binary in $(find bin -executable -type f); do
+	for binary in $(find bin -type f -executable); do
 		ln -fs -- "$(realpath "${binary}")" "${HOME}/.local/bin"
 	done
 fi
