@@ -12,4 +12,4 @@ set print array-indexes on
 
 set disassembly-flavor intel
 
-set prompt \001\033[1m\002(gdb) \001\033[0m\002
+set prompt \001\033[34;1m\002(gdb) \001\033[0m\002
