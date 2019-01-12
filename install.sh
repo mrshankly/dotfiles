@@ -40,6 +40,7 @@ mkdir -p -m 700 "${HOME}/usr/priv"
 
 mkdir -p "${HOME}/var/dl"  \
          "${HOME}/var/log" \
+         "${HOME}/var/mnt" \
          "${HOME}/var/pkg" \
          "${HOME}/var/tr"
 
