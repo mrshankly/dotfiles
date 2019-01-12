@@ -1,0 +1,18 @@
+#!/bin/sh
+
+. ~/.profile
+
+# Set keyboard layout and swap right alt with right ctrl.
+setxkbmap -model pc104 -layout us -option ctrl:ralt_rctrl
+
+# Disable mouse acceleration.
+xinput set-prop 'SteelSeries Kana v2 Gaming Mouse' 'libinput Accel Speed' -1
+
+# Disable monitor standby, suspend and off.
+xset dpms 0 0 0
+
+# Disable screensaver.
+xset s noblank
+xset s off
+
+exec startxfce4
