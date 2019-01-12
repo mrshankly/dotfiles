@@ -38,6 +38,10 @@
 (global-display-line-numbers-mode)
 (global-hl-line-mode +1)
 
+;; Highlight matching brackets and insert by pair.
+(show-paren-mode 1)
+(electric-pair-mode 1)
+
 ;; Standard ML
 (autoload 'sml-mode "sml-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.sml\\'" . sml-mode))
