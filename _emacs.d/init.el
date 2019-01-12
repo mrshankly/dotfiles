@@ -30,9 +30,13 @@
 
 (add-to-list 'custom-theme-load-path themes-dir)
 
-;; Appearance
+;; Set theme and font.
 (load-theme 'gruvbox-dark-hard t)
 (set-face-attribute 'default nil :font "Iosevka Term SS05-11")
+
+;; Show line numbers and highlight current line.
+(global-display-line-numbers-mode)
+(global-hl-line-mode +1)
 
 ;; Standard ML
 (autoload 'sml-mode "sml-mode" nil t)
