@@ -25,4 +25,10 @@
 (add-to-list 'load-path site-lisp-dir)
 
 ;; Standard ML
-(require 'sml-mode)
+(autoload 'sml-mode "sml-mode" nil t)
+(add-to-list 'auto-mode-alist '("\\.sml\\'" . sml-mode))
+
+;; Rust
+(setq rust-format-on-save t)
+(autoload 'rust-mode "rust-mode" nil t)
+(add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode))
