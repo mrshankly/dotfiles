@@ -31,7 +31,7 @@
 (add-to-list 'custom-theme-load-path themes-dir)
 
 ;; Customize theme and font.
-(load-theme 'gruvbox t)
+(load-theme 'gruvbox-dark-hard t)
 
 ;; Standard ML
 (autoload 'sml-mode "sml-mode" nil t)
