@@ -19,5 +19,8 @@ export LEDGER_FILE="$HOME/usr/ledger/journal.ledger"
 
 export PATH="$HOME/.local/bin:$PATH:/usr/local/sbin:/usr/sbin:/sbin"
 
+# Initialize cargo.
+test -r "$HOME/.cargo/env" && . "$HOME/.cargo/env" > /dev/null 2>&1 || true
+
 # Initialize opam.
 test -r "$HOME/.opam/opam-init/init.sh" && . "$HOME/.opam/opam-init/init.sh" > /dev/null 2>&1 || true
