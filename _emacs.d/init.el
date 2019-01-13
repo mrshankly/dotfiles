@@ -43,10 +43,39 @@
 (electric-pair-mode 1)
 
 ;; Standard ML
-(autoload 'sml-mode "sml-mode" nil t)
+(autoload 'sml-mode "sml-mode" nil t nil)
 (add-to-list 'auto-mode-alist '("\\.sml\\'" . sml-mode))
+
+;; OCaml
+(setq tuareg-match-patterns-aligned t)
+(load (expand-file-name "tuareg/tuareg-site-file" site-lisp-dir))
+
+(let ((opam-share
+  (ignore-errors (car (process-lines "opam" "config" "var" "share")))))
+    (when (and opam-share (file-directory-p opam-share))
+      (add-to-list 'load-path (expand-file-name "emacs/site-lisp" opam-share))
+      ;; Merlin
+      (autoload 'merlin-mode "merlin" nil t nil)
+      (add-hook 'tuareg-mode-hook 'merlin-mode t)
+      (add-hook 'caml-mode-hook 'merlin-mode t)
+      (setq merlin-command 'opam)))
+      ;; ocp-indent
+      (require 'ocp-indent)
+      ;; ocamlformat
+      (require 'ocamlformat)
+      (add-hook 'tuareg-mode-hook (lambda ()
+        (add-hook 'before-save-hook 'ocamlformat-before-save)))
 
 ;; Rust
 (setq rust-format-on-save t)
-(autoload 'rust-mode "rust-mode" nil t)
+(autoload 'rust-mode "rust-mode" nil t nil)
 (add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode))
+
+;; Company
+(add-to-list 'load-path (expand-file-name "company-mode" site-lisp-dir))
+(autoload 'company-mode "company" nil t nil)
+
+(with-eval-after-load 'company
+  (add-to-list 'company-backends 'merlin-company-backend))
+
+(add-hook 'merlin-mode-hook 'company-mode t)
