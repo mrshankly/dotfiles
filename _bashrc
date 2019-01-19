@@ -9,10 +9,13 @@ if ! shopt -oq posix; then
   elif [ -r /etc/bash_completion ]; then
     . /etc/bash_completion
   fi
+  if [ -r /usr/share/git/completion/git-prompt.sh ]; then
+    . /usr/share/git/completion/git-prompt.sh
+  fi
 fi
 
-if [ -r "$XDG_CONFIG_HOME/ls_colors" ]; then
-  eval $(dircolors -b "$XDG_CONFIG_HOME/ls_colors")
+if [ -r "${XDG_CONFIG_HOME}/ls_colors" ]; then
+  eval $(dircolors -b "${XDG_CONFIG_HOME}/ls_colors")
 fi
 
 PS1='\[\e[34m\]\w\[\e[32m\]$(__git_ps1)\[\e[m\] \\$ '
