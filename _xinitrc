@@ -1,7 +1,5 @@
 #!/bin/sh
 
-. ~/.profile
-
 # Set keyboard layout and swap right alt with right ctrl.
 setxkbmap -model pc104 -layout us -option compose:ralt
 

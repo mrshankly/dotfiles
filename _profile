@@ -9,19 +9,23 @@ export HISTCONTROL=ignoreboth:erasedups
 export LESSHISTFILE="/dev/null"
 export LESSHISTSIZE=0
 
-export XDG_CONFIG_HOME="$HOME/.config"
-export XDG_DATA_HOME="$HOME/.local/share"
-export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_CONFIG_HOME="${HOME}/.config"
+export XDG_DATA_HOME="${HOME}/.local/share"
+export XDG_CACHE_HOME="${HOME}/.cache"
 
-export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
-export RLWRAP_HOME="$XDG_CACHE_HOME/rlwrap"
-export LEDGER_FILE="$HOME/usr/ledger/journal.ledger"
-export OCP_INDENT_CONFIG="$XDG_CONFIG_HOME/ocp/ocp-indent.conf"
+export GNUPGHOME="${XDG_CONFIG_HOME}/gnupg"
+export RLWRAP_HOME="${XDG_CACHE_HOME}/rlwrap"
+export LEDGER_FILE="${HOME}/usr/ledger/journal.ledger"
+export OCP_INDENT_CONFIG="${XDG_CONFIG_HOME}/ocp/ocp-indent.conf"
 
-export PATH="$HOME/.local/bin:$PATH:/usr/local/sbin:/usr/sbin:/sbin"
+export PATH="${HOME}/.local/bin:${PATH}"
 
 # Initialize cargo.
-test -r "$HOME/.cargo/env" && . "$HOME/.cargo/env" > /dev/null 2>&1 || true
+if [ -r "${HOME}/.cargo/env" ]; then
+  . "${HOME}/.cargo/env" > /dev/null 2>&1
+fi
 
 # Initialize opam.
-test -r "$HOME/.opam/opam-init/init.sh" && . "$HOME/.opam/opam-init/init.sh" > /dev/null 2>&1 || true
+if [ -r "${HOME}/.opam/opam-init/init.sh" ]; then
+  . "${HOME}/.opam/opam-init/init.sh" > /dev/null 2>&1
+fi
