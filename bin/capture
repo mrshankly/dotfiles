@@ -13,7 +13,7 @@ cpt_offset="0,0"
 cpt_resolution="$(xdpyinfo | awk '/dimensions/{print $2}')"
 
 usage() {
-	printf "usage: %s [-s] [-r RATE] [-o OUTPUT]\n" "${cmdname}" 1>&2
+	printf "usage: %s [-s] [-r <rate>] [-o <output>]\n" "${cmdname}" 1>&2
 	exit 1
 }
 

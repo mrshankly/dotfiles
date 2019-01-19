@@ -5,7 +5,7 @@ set -e
 cmdname="$(basename "${0}")"
 
 usage() {
-	printf "usage: %s [-l] [-f FORMAT] CHANNEL\n" "${cmdname}" 1>&2
+	printf "usage: %s [-l] [-f <format>] <channel>\n" "${cmdname}" 1>&2
 	exit 1
 }
 
