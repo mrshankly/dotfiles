@@ -12,7 +12,7 @@ yn() {
 
 linkdf() {
 	local source="${1}"
-	local target="${HOME}/.${source#./_*}"
+	local target="$(echo "${HOME}/.${source#./_*}" | sed -e 's/\/_/\/./')"
 
 	chmod go-rwx "${source}"
 	mkdir -p -m 700 -- "$(dirname "${target}")"
@@ -51,7 +51,7 @@ if yn 'Link binaries?'; then
 fi
 
 if yn 'Link dotfiles?'; then
-	for source in $(find . -name '_*' | sort); do
+	for source in $(find . -maxdepth 1 -name '_*' | sort); do
 		if [ -d "${source}" ]; then
 			for dotfile in $(find "${source}" -type f | sort); do
 				linkdf "${dotfile}"
