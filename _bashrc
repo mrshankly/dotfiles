@@ -15,7 +15,7 @@ if [ -r "$XDG_CONFIG_HOME/ls_colors" ]; then
   eval $(dircolors -b "$XDG_CONFIG_HOME/ls_colors")
 fi
 
-PS1='\w \[\e[34;1m\]\$\[\e[0m\] '
+PS1='\[\e[34m\]\w\[\e[32m\]$(__git_ps1)\[\e[m\] \\$ '
 
 alias ls='ls --color=auto'
 alias ll='ls -lh'
