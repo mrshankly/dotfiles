@@ -115,7 +115,7 @@ font:
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
   offset:
-    x: 1
+    x: 0
     y: 0
 
   # Glyph offset determines the locations of the glyphs within their cells with
@@ -138,8 +138,8 @@ draw_bold_text_with_bright_colors: false
 colors:
   # Default colors
   primary:
-    background: '0x282828'
-    foreground: '0xebdbb2'
+    background: '0xfafafa'
+    foreground: '0x383a42'
 
     # Bright and dim foreground colors
     #
@@ -153,31 +153,31 @@ colors:
   #
   # Colors which should be used to draw the terminal cursor. If these are unset,
   # the cursor color will be the inverse of the cell color.
-  # cursor:
-  #   text:   '0x424242'
-  #   cursor: '0x8888c8'
+  cursor:
+    text:   '0x383a42'
+    cursor: '0xa0a1a7'
 
   # Normal colors
   normal:
-    black:   '0x282828'
-    red:     '0xcc241d'
-    green:   '0x98971a'
-    yellow:  '0xd79921'
-    blue:    '0x458588'
-    magenta: '0xb16286'
-    cyan:    '0x689d6a'
-    white:   '0xa89984'
+    black:   '0xfafafa'
+    red:     '0xca1243'
+    green:   '0x50a14f'
+    yellow:  '0xc18401'
+    blue:    '0x4078f2'
+    magenta: '0xa626a4'
+    cyan:    '0x0184bc'
+    white:   '0x383a42'
 
   # Bright colors
   bright:
-    black:   '0x928374'
-    red:     '0xfb4934'
-    green:   '0xb8bb26'
-    yellow:  '0xfabd2f'
-    blue:    '0x83a598'
-    magenta: '0xd3869b'
-    cyan:    '0x8ec07c'
-    white:   '0xebdbb2'
+    black:   '0xa0a1a7'
+    red:     '0xca1243'
+    green:   '0x50a14f'
+    yellow:  '0xc18401'
+    blue:    '0x4078f2'
+    magenta: '0xa626a4'
+    cyan:    '0x0184bc'
+    white:   '0x090a0b'
 
   # Dim colors
   #
