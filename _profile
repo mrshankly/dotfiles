@@ -17,6 +17,7 @@ export GNUPGHOME="${XDG_CONFIG_HOME}/gnupg"
 export RLWRAP_HOME="${XDG_CACHE_HOME}/rlwrap"
 export LEDGER_FILE="${HOME}/usr/ledger/journal.ledger"
 export OCP_INDENT_CONFIG="${XDG_CONFIG_HOME}/ocp/ocp-indent.conf"
+export BC_ENV_ARGS="--mathlib --quiet ${XDG_CONFIG_HOME}/bc/bcrc"
 
 export PATH="${HOME}/.local/bin:${PATH}"
 
