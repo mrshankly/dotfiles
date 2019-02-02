@@ -1,0 +1,53 @@
+Xft.dpi:       96
+Xft.rgba:      rgb
+Xft.antialias: true
+Xft.hinting:   true
+Xft.autohint:  false
+Xft.hintstyle: hintslight
+Xft.lcdfilter: lcddefault
+
+URxvt.scrollBar:         false
+URxvt.scrollTtyOutput:   false
+URxvt.scrollWithBuffer:  true
+URxvt.scrollTtyKeypress: true
+URxvt.saveLines:         32768
+
+URxvt.font: xft:Iosevka Term SS05:style=medium:size=11
+
+URxvt.background: #fafafa
+URxvt.foreground: #383a42
+
+URxvt.cursorBlink:  true
+URxvt.cursorColor:  #a0a1a7
+URxvt.cursorColor2: #383a42
+
+URxvt.color0: #fafafa
+URxvt.color8: #a0a1a7
+
+URxvt.color1: #ca1243
+URxvt.color9: #ca1243
+
+URxvt.color2:  #50a14f
+URxvt.color10: #50a14f
+
+URxvt.color3:  #c18401
+URxvt.color11: #c18401
+
+URxvt.color4:  #4078f2
+URxvt.color12: #4078f2
+
+URxvt.color5:  #a626a4
+URxvt.color13: #a626a4
+
+URxvt.color6:  #0184bc
+URxvt.color14: #0184bc
+
+URxvt.color7:  #383a42
+URxvt.color15: #090a0b
+
+URxvt.perl-ext-common: default,matcher,resize-font
+
+URxvt.url-launcher:   /usr/bin/xdg-open
+URxvt.matcher.button: C1
+
+URxvt.resize-font.step: 1
