@@ -75,6 +75,11 @@ if yn 'Configure ssh client?'; then
 		printf 'Generating github key...\n'
 		ssh-keygen -t ed25519 -o -a 100 -f "${HOME}/.ssh/id_ed25519_github"
 	fi
+
+    if yn 'Generate bitbucket key?'; then
+        printf 'Generating bitbucket key...\n'
+        ssh-keygen -t ed25519 -o -a 100 -f "${HOME}/.ssh/id_ed25519_bitbucket"
+    fi
 fi
 
 if yn 'Configure ssh server?'; then
