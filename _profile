@@ -14,11 +14,21 @@ export XDG_DATA_HOME="${HOME}/.local/share"
 export XDG_CACHE_HOME="${HOME}/.cache"
 
 # Stop polluting my home folder with dotfiles.
+
+export XAUTHORITY="${XDG_RUNTIME_DIR}/Xauthority"
+
 export GNUPGHOME="${XDG_CONFIG_HOME}/gnupg"
 export PASSWORD_STORE_DIR="${XDG_DATA_HOME}/pass"
+
+export RXVT_SOCKET="${XDG_RUNTIME_DIR}/urxvtd"
 export URXVT_PERL_LIB="${XDG_CONFIG_HOME}/urxvt"
+
+export OPAMROOT="${XDG_DATA_HOME}/opam"
 export RLWRAP_HOME="${XDG_CACHE_HOME}/rlwrap"
 export OCP_INDENT_CONFIG="${XDG_CONFIG_HOME}/ocp/ocp-indent.conf"
+
+export CARGO_HOME="${XDG_DATA_HOME}/cargo"
+export RUSTUP_HOME="${XDG_DATA_HOME}/rustup"
 
 export LEDGER_FILE="${HOME}/usr/ledger/journal.ledger"
 export BC_ENV_ARGS="--mathlib --quiet ${XDG_CONFIG_HOME}/bc/bcrc"
@@ -26,11 +36,11 @@ export BC_ENV_ARGS="--mathlib --quiet ${XDG_CONFIG_HOME}/bc/bcrc"
 export PATH="${HOME}/.local/bin:${PATH}"
 
 # Initialize cargo.
-if [ -r "${HOME}/.cargo/env" ]; then
-  . "${HOME}/.cargo/env" > /dev/null 2>&1
+if [ -r "${CARGO_HOME}/env" ]; then
+  . "${CARGO_HOME}/env" > /dev/null 2>&1
 fi
 
 # Initialize opam.
-if [ -r "${HOME}/.opam/opam-init/init.sh" ]; then
-  . "${HOME}/.opam/opam-init/init.sh" > /dev/null 2>&1
+if [ -r "${OPAMROOT}/opam-init/init.sh" ]; then
+  . "${OPAMROOT}/opam-init/init.sh" > /dev/null 2>&1
 fi
