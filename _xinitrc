@@ -4,10 +4,8 @@ if [ -r "${XDG_CONFIG_HOME}/x11/Xresources" ]; then
   xrdb -merge "${XDG_CONFIG_HOME}/x11/Xresources"
 fi
 
-# Set keyboard layout and swap right alt with right ctrl.
+# Set keyboard layout and key refresh rate.
 setxkbmap -model pc104 -layout us -option compose:ralt
-
-# Set key refresh rate.
 xset r rate 320 35
 
 # Disable mouse acceleration.
