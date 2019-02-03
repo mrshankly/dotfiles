@@ -1,11 +1,14 @@
 #!/bin/sh
 
-if [ -r "${HOME}/.Xresources" ]; then
-  xrdb -merge "${HOME}/.Xresources"
+if [ -r "${XDG_CONFIG_HOME}/x11/Xresources" ]; then
+  xrdb -merge "${XDG_CONFIG_HOME}/x11/Xresources"
 fi
 
 # Set keyboard layout and swap right alt with right ctrl.
 setxkbmap -model pc104 -layout us -option compose:ralt
+
+# Set key refresh rate.
+xset r rate 320 35
 
 # Disable mouse acceleration.
 xinput set-prop 'SteelSeries Kana v2 Gaming Mouse' 'libinput Accel Speed' -1
