@@ -69,22 +69,25 @@ if yn 'Configure ssh client?'; then
 	install -m 600 system/ssh_config "${HOME}/.ssh/config"
 
 	printf 'Generating client key...\n'
+	rm -f "${HOME}/.ssh/id_ed25519"
 	ssh-keygen -t ed25519 -o -a 100 -f "${HOME}/.ssh/id_ed25519"
 
 	if yn 'Generate github key?'; then
 		printf 'Generating github key...\n'
+		rm -f "${HOME}/.ssh/id_ed25519_github"
 		ssh-keygen -t ed25519 -o -a 100 -f "${HOME}/.ssh/id_ed25519_github"
 	fi
 
-    if yn 'Generate bitbucket key?'; then
-        printf 'Generating bitbucket key...\n'
-        ssh-keygen -t ed25519 -o -a 100 -f "${HOME}/.ssh/id_ed25519_bitbucket"
-    fi
+	if yn 'Generate bitbucket key?'; then
+		printf 'Generating bitbucket key...\n'
+		rm -f "${HOME}/.ssh/id_ed25519_bitbucket"
+		ssh-keygen -t ed25519 -o -a 100 -f "${HOME}/.ssh/id_ed25519_bitbucket"
+	fi
 fi
 
 if yn 'Configure ssh server?'; then
 	sudo groupadd -f -r ssh
-	sudo adduser "${USER}" ssh
+	sudo usermod -aG ssh "${USER}"
 
 	sudo install -Dm 644 system/sshd_config /etc/ssh/sshd_config
 
