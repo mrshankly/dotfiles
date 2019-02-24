@@ -18,7 +18,7 @@ URxvt.scrollWithBuffer:  true
 URxvt.scrollTtyKeypress: true
 URxvt.saveLines:         32768
 
-URxvt.font: xft:Iosevka Term SS05:style=medium:size=11
+URxvt.font: xft:Iosevka Term:style=medium:size=11
 
 URxvt.background: #fafafa
 URxvt.foreground: #383a42
