@@ -62,7 +62,7 @@ if yn 'Link dotfiles?'; then
 	done
 fi
 
-# SSH configuration is not symlinked.
+# System configurations are not symlinked.
 
 if yn 'Configure ssh client?'; then
 	mkdir -p -m 700 "${HOME}/.ssh"
@@ -94,4 +94,9 @@ if yn 'Configure ssh server?'; then
 	printf 'Generating host key...\n'
 	sudo rm -f /etc/ssh/ssh_host_*key*
 	sudo ssh-keygen -t ed25519 -f /etc/ssh/ssh_host_ed25519_key -N '' < /dev/null
+fi
+
+if yn 'Configure nginx?'; then
+	sudo useradd -r -U -s /usr/bin/nologin http
+	sudo install -Dm 644 system/nginx.conf /etc/nginx/nginx.conf
 fi
