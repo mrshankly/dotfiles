@@ -1,7 +1,7 @@
 #!/bin/sh
 
 if [ -r "${XDG_CONFIG_HOME}/x11/Xresources" ]; then
-  xrdb -merge "${XDG_CONFIG_HOME}/x11/Xresources"
+  xrdb -load "${XDG_CONFIG_HOME}/x11/Xresources"
 fi
 
 # Set keyboard layout and key refresh rate.
