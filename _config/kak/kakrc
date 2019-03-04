@@ -1,0 +1,2 @@
+set-option global scrolloff 5,5
+add-highlighter global/ show-matching
