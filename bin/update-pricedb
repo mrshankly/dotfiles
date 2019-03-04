@@ -1,0 +1,51 @@
+#!/usr/bin/env python3
+
+import os
+from datetime import datetime
+from pathlib import Path
+from typing import Any, Dict, List
+
+import requests
+
+URL = "https://query1.finance.yahoo.com/v7/finance/quote"
+
+SYMBOLS = ["IWDA.AS"]
+SYMBOLS_TO_PRETTY_SYMBOLS = {"IWDA.AS": "IWDA"}
+
+
+def fetch_quotes() -> List[Dict[str, Any]]:
+    symbols = ",".join(SYMBOLS)
+
+    response = requests.get(URL, params={"interval": "1d", "symbols": symbols})
+    response.raise_for_status()
+
+    quotes = response.json()["quoteResponse"]["result"]
+    if len(quotes) != len(SYMBOLS):
+        raise RuntimeError(f"Failed to fetch all symbols: {symbols}")
+
+    return quotes
+
+
+def update_pricedb(quotes: List[Dict[str, Any]]) -> None:
+    pricedb_path = os.path.join(Path.home(), "usr/ledger/prices.db")
+    prices = []
+
+    for quote in quotes:
+        timestamp = int(quote["regularMarketTime"])
+        date = datetime.utcfromtimestamp(timestamp).strftime("%Y-%m-%d %H:%M:%S")
+
+        ugly_symbol = quote["symbol"]
+        symbol = SYMBOLS_TO_PRETTY_SYMBOLS.get(ugly_symbol, ugly_symbol)
+
+        price = quote["regularMarketPrice"]
+        currency = quote["currency"]
+
+        prices.append(f"P {date} {symbol} {price} {currency}")
+
+    with open(pricedb_path, "a") as pricedb:
+        for price in prices:
+            pricedb.write(price + "\n")
+
+
+if __name__ == "__main__":
+    update_pricedb(quotes=fetch_quotes())
