@@ -20,36 +20,36 @@ URxvt.saveLines:         32768
 
 URxvt.font: xft:Iosevka Term:style=medium:size=11
 
-URxvt.background: #fafafa
-URxvt.foreground: #383a42
+URxvt.background: #ffffec
+URxvt.foreground: #424242
 
 URxvt.cursorBlink:  true
 URxvt.cursorColor:  #a0a1a7
 URxvt.cursorColor2: #383a42
 
-URxvt.color0: #fafafa
-URxvt.color8: #a0a1a7
+URxvt.color0: #424242
+URxvt.color8: #424242
 
-URxvt.color1: #ca1243
-URxvt.color9: #ca1243
+URxvt.color1: #b85c57
+URxvt.color9: #b85c57
 
-URxvt.color2:  #50a14f
-URxvt.color10: #50a14f
+URxvt.color2:  #57864e
+URxvt.color10: #57864e
 
-URxvt.color3:  #c18401
-URxvt.color11: #c18401
+URxvt.color3:  #8f7734
+URxvt.color11: #8f7734
 
-URxvt.color4:  #4078f2
-URxvt.color12: #4078f2
+URxvt.color4:  #2a8dc5
+URxvt.color12: #2a8dc5
 
-URxvt.color5:  #a626a4
-URxvt.color13: #a626a4
+URxvt.color5:  #8888c7
+URxvt.color13: #8888c7
 
-URxvt.color6:  #0184bc
-URxvt.color14: #0184bc
+URxvt.color6:  #6aa7a8
+URxvt.color14: #6aa7a8
 
-URxvt.color7:  #383a42
-URxvt.color15: #090a0b
+URxvt.color7:  #999957
+URxvt.color15: #999957
 
 URxvt.perl-ext-common: default,matcher,resize-font
 
