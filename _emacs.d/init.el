@@ -61,8 +61,8 @@
 (set-face-attribute 'default nil :font "Iosevka-13")
 
 ;; Show line numbers and highlight current line.
-(global-display-line-numbers-mode)
 (global-hl-line-mode +1)
+(add-hook 'prog-mode-hook #'display-line-numbers-mode)
 
 ;; Highlight matching brackets and insert by pair.
 (show-paren-mode 1)
@@ -71,6 +71,13 @@
 ;; Ensure there's a newline at the EOF and show trailing whitespace.
 (setq-default require-final-newline t)
 (setq-default show-trailing-whitespace t)
+
+;; Don't show trailing whitespace on some modes.
+(defun maybe-hide-trailing-whitespace ()
+  (when (derived-mode-p 'term-mode)
+    (setq show-trailing-whitespace nil)))
+
+(add-hook 'after-change-major-mode-hook #'maybe-hide-trailing-whitespace)
 
 ;; Display available keybindings.
 (use-package which-key
@@ -85,5 +92,5 @@
   (company-idle-delay 0.1)
   (company-minimum-prefix-length 2))
 
-;; Reduce garbage collection threshold so that garbage collection pauses are faster.
+;; Reduce threshold so that garbage collection pauses are faster.
 (run-with-idle-timer 5 nil (lambda () (setq gc-cons-threshold (* 2 1024 1024))))
