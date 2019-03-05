@@ -1,7 +1,0 @@
-add-highlighter global/ number-lines -hlcursor
-add-highlighter global/ wrap
-add-highlighter global/ show-matching
-
-set-option global scrolloff 10,10
-
-colorscheme gruvbox
