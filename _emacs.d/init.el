@@ -1,6 +1,11 @@
 ;; Increase garbage collection threshold to reduce start up time.
 (setq gc-cons-threshold (* 100 1024 1024))
 
+;; Change some defaults.
+(fset 'yes-or-no-p 'y-or-n-p)
+(set-default-coding-systems 'utf-8)
+(setq-default vc-follow-symlinks t)
+
 ;; Bootstrap straight.el.
 (defvar bootstrap-version)
 (let ((bootstrap-file
