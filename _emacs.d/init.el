@@ -110,14 +110,29 @@
 ;; Make `use-package' always lazy load features unless told otherwise.
 (setq use-package-always-defer t)
 
+;; Keep ~/.emacs.d clean.
+(use-package no-littering
+  :demand t)
+
 ;; Disable menu bar.
 (use-package menu-bar
   :straight nil
   :config (menu-bar-mode -1))
 
-;; Keep ~/.emacs.d clean.
-(use-package no-littering
-  :demand t)
+;; Use `ibuffer' instead of `list-buffers'.
+(use-package ibuffer
+  :straight nil
+  :bind ([remap list-buffers] . ibuffer))
+
+;; Use `ido-mode' for improved completion of buffers and files.
+(use-package ido
+  :straight nil
+  :demand t
+  :config
+  (ido-mode 1)
+  :custom
+  (ido-everywhere t)
+  (ido-enable-flex-matching t))
 
 ;; Display available keybindings.
 (use-package which-key
