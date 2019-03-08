@@ -6,6 +6,8 @@ Xft.autohint:  false
 Xft.hintstyle: hintslight
 Xft.lcdfilter: lcddefault
 
+! rxvt-unicode configuration.
+
 URxvt.iso14755:    false
 URxvt.iso14755_52: false
 
@@ -57,3 +59,18 @@ URxvt.url-launcher:   /usr/bin/xdg-open
 URxvt.matcher.button: C1
 
 URxvt.resize-font.step: 1
+
+! rofi configuration.
+
+rofi.font:     Iosevka 13
+rofi.terminal: urxvtc
+
+rofi.padding:        200
+rofi.hide-scrollbar: true
+rofi.fullscreen:     true
+
+rofi.color-window: argb:f22f3847, argb:f22f3847
+
+rofi.color-normal: argb:00000000, #ebe6d4, argb:00000000, argb:00000000, #ead068
+rofi.color-urgent: argb:00000000, #ebe6d4, argb:00000000, argb:00000000, #ead068
+rofi.color-active: argb:00000000, #ebe6d4, argb:00000000, argb:00000000, #ead068
