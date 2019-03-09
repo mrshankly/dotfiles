@@ -44,13 +44,20 @@
       scroll-conservatively 10000
       scroll-preserve-screen-position t)
 
-;; Display line numbers on some modes.
+;; Configure and display line numbers.
 (setq-default display-line-numbers-type t
-              display-line-numbers-width 4
+              display-line-numbers-width 3
               display-line-numbers-widen t)
 
-(add-hook 'text-mode-hook #'display-line-numbers-mode)
-(add-hook 'prog-mode-hook #'display-line-numbers-mode)
+(global-display-line-numbers-mode 1)
+
+;; Don't display line numbers on some modes.
+(defun maybe-hide-line-numbers ()
+  (when (derived-mode-p 'term-mode
+                        'shell-mode)
+    (display-line-numbers-mode -1)))
+
+(add-hook 'after-change-major-mode-hook #'maybe-hide-line-numbers)
 
 ;; Highlight current line.
 (global-hl-line-mode 1)
