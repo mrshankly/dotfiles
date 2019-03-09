@@ -1,0 +1,78 @@
+#!/bin/sh
+
+set -e
+
+cmdname="$(basename "${0}")"
+
+usage() {
+    printf "usage: %s [-r] [-p]\n" "${cmdname}" 1>&2
+    exit 1
+}
+
+rofi_stub() {
+    local screen_width="$(xdpyinfo | awk '/dimensions/{print $2}' | cut -d 'x' -f1)"
+    local rofi_width=500
+
+    if [ "${rofi_width}" -gt "${screen_width}" ]; then
+        rofi_width="${screen_width}"
+    fi
+
+    local color_text="argb:00000000,${foreground},argb:00000000,argb:00000000,${fhighlight}"
+    local color_window="${background},${background}"
+
+    rofi -matching 'fuzzy'                             \
+         -font 'Iosevka 13'                            \
+         -terminal 'urxvtc'                            \
+         -lines 10                                     \
+         -width "${screen_width}"                      \
+         -padding $(((screen_width - rofi_width) / 2)) \
+         -bw 0                                         \
+         -hide-scrollbar                               \
+         -color-normal "${color_text}"                 \
+         -color-urgent "${color_text}"                 \
+         -color-active "${color_text}"                 \
+         -color-window "${color_window}"               \
+         $@
+}
+
+rofi_run() {
+    background="argb:f22f3847"
+    foreground="argb:ffebe6d4"
+    fhighlight="argb:ffead068"
+
+    rofi_stub -show run
+}
+
+rofi_pass() {
+    background="argb:f22f3847"
+    foreground="argb:ffebe6d4"
+    fhighlight="argb:ffe7908f"
+
+    local password_store=${PASSWORD_STORE_DIR-~/.password_store}
+    local password_fname=$(find "${password_store}" -type f -name '*.gpg' -printf '%P\n' |
+                           sed -e 's/\.gpg$//'                                           |
+                           sort                                                          |
+                           rofi_stub -dmenu -p 'pass')
+
+    if [ -n "${password_fname:+set}" ]; then
+        pass -c "${password_fname}" 1>/dev/null 2>&1
+    fi
+}
+
+if [ $# -ne 1 ]; then
+    usage
+fi
+
+while getopts 'rp' o; do
+    case "${o}" in
+        r) show_run=true  ;;
+        p) show_pass=true ;;
+        *) usage          ;;
+    esac
+done && shift $((OPTIND - 1)) && test $# -ne 0 && usage
+
+if [ "${show_run}" = true ]; then
+    rofi_run
+elif [ "${show_pass}" = true ]; then
+    rofi_pass
+fi
