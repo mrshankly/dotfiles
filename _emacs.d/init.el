@@ -1,5 +1,4 @@
-;; Speed up initialization by increasing garbage collection threshold
-;; during start up.
+;; Speed up initialization by increasing garbage collection threshold.
 (setq gc-cons-threshold (* 100 1024 1024))
 
 ;; Always load newest bytecode.
@@ -36,10 +35,12 @@
 (setq ring-bell-function 'ignore)
 
 ;; Improve scrolling.
-(setq scroll-step 1
-      scroll-margin 10
+(setq mouse-wheel-scroll-amount '(1)
+      mouse-wheel-progressive-speed nil
+      scroll-step 1
+      scroll-margin 5
       scroll-conservatively 10000
-      auto-window-vscroll nil)
+      scroll-preserve-screen-position t)
 
 ;; Display line numbers on some modes.
 (setq-default display-line-numbers-type t
