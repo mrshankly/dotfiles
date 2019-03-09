@@ -38,7 +38,9 @@
 (setq mouse-wheel-scroll-amount '(1)
       mouse-wheel-progressive-speed nil
       scroll-step 1
-      scroll-margin 5
+      hscroll-step 1
+      scroll-margin 1
+      hscroll-margin 1
       scroll-conservatively 10000
       scroll-preserve-screen-position t)
 
