@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t -*-
+
 ;; Speed up initialization by increasing garbage collection threshold.
 (setq gc-cons-threshold (* 100 1024 1024))
 
@@ -207,19 +209,17 @@
     ;; Enable the defined color theme.
     (load-theme jm/color-theme 'no-confirm)
 
-    ;; Update `jm/color-theme' to either dark or light color theme
-    ;; depending on its current value.
+    ;; Update `jm/color-theme' to either dark or light depending on its
+    ;; current value.
     (cond
      ((equal jm/color-theme jm/dark-color-theme)
       (setq jm/color-theme jm/light-color-theme))
      ((equal jm/color-theme jm/light-color-theme)
       (setq jm/color-theme jm/dark-color-theme)))))
 
-(global-set-key (kbd "C-c t") #'jm/toggle-color-theme)
-
 (use-package doom-themes
-  :demand t
-  :config (jm/toggle-color-theme))
+  :hook (after-init . jm/toggle-color-theme)
+  :bind ("C-c t" . jm/toggle-color-theme))
 
 ;; Reset garbage collection threshold when idle for 10 seconds.
 (run-with-idle-timer
