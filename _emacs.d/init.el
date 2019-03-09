@@ -7,6 +7,9 @@
 ;; Answer questions with a simple y/n.
 (fset 'yes-or-no-p #'y-or-n-p)
 
+;; Just kill the damn processes.
+(setq confirm-kill-processes nil)
+
 ;; Stop nagging.
 (setq inhibit-splash-screen t
       inhibit-startup-message t
@@ -16,9 +19,11 @@
 (defun display-startup-echo-area-message ()
   (message ""))
 
-;; Take me to where I was.
-(desktop-save-mode t)
-(save-place-mode t)
+;; Save open buffers, cursor position and always start maximized.
+(add-to-list 'initial-frame-alist '(fullscreen . maximized))
+(setq desktop-restore-frames nil)
+(desktop-save-mode 1)
+(save-place-mode 1)
 
 ;; Disable backups and auto-save.
 (setq make-backup-files nil
@@ -41,7 +46,7 @@
       hscroll-step 1
       scroll-margin 1
       hscroll-margin 1
-      scroll-conservatively 10000
+      scroll-conservatively 101
       scroll-preserve-screen-position t)
 
 ;; Configure and display line numbers.
@@ -52,12 +57,12 @@
 (global-display-line-numbers-mode 1)
 
 ;; Don't display line numbers on some modes.
-(defun maybe-hide-line-numbers ()
+(defun jm/maybe-hide-line-numbers ()
   (when (derived-mode-p 'term-mode
                         'shell-mode)
     (display-line-numbers-mode -1)))
 
-(add-hook 'after-change-major-mode-hook #'maybe-hide-line-numbers)
+(add-hook 'after-change-major-mode-hook #'jm/maybe-hide-line-numbers)
 
 ;; Highlight current line.
 (global-hl-line-mode 1)
@@ -75,12 +80,12 @@
               show-trailing-whitespace t)
 
 ;; Don't show trailing whitespace on some modes.
-(defun maybe-hide-trailing-whitespace ()
+(defun jm/maybe-hide-trailing-whitespace ()
   (when (derived-mode-p 'term-mode
                         'shell-mode)
     (setq show-trailing-whitespace nil)))
 
-(add-hook 'after-change-major-mode-hook #'maybe-hide-trailing-whitespace)
+(add-hook 'after-change-major-mode-hook #'jm/maybe-hide-trailing-whitespace)
 
 ;; Configure graphic display.
 (when (display-graphic-p)
@@ -187,10 +192,34 @@
   :config (minions-mode 1)
   :custom (minions-mode-line-lighter "--"))
 
-;; Enable color theme.
+;; Color theme configuration. Create a keybind to toggle between
+;; dark and light color themes.
+(defvar jm/dark-color-theme 'doom-one)
+(defvar jm/light-color-theme 'doom-one-light)
+(defvar jm/color-theme jm/light-color-theme)
+
+(defun jm/toggle-color-theme ()
+  (interactive)
+  (unless (equal (list jm/color-theme) custom-enabled-themes)
+    ;; Disable all the currently enabled color themes.
+    (mapc #'disable-theme custom-enabled-themes)
+
+    ;; Enable the defined color theme.
+    (load-theme jm/color-theme 'no-confirm)
+
+    ;; Update `jm/color-theme' to either dark or light color theme
+    ;; depending on its current value.
+    (cond
+     ((equal jm/color-theme jm/dark-color-theme)
+      (setq jm/color-theme jm/light-color-theme))
+     ((equal jm/color-theme jm/light-color-theme)
+      (setq jm/color-theme jm/dark-color-theme)))))
+
+(global-set-key (kbd "C-c t") #'jm/toggle-color-theme)
+
 (use-package doom-themes
   :demand t
-  :config (load-theme 'doom-one-light 'no-confirm))
+  :config (jm/toggle-color-theme))
 
 ;; Reset garbage collection threshold when idle for 10 seconds.
 (run-with-idle-timer
