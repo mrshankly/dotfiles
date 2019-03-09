@@ -17,6 +17,10 @@
 (defun display-startup-echo-area-message ()
   (message ""))
 
+;; Take me to where I was.
+(desktop-save-mode t)
+(save-place-mode t)
+
 ;; Disable backups and auto-save.
 (setq make-backup-files nil
       auto-save-default nil
