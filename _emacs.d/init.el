@@ -180,7 +180,11 @@
 
 ;; Version control.
 (use-package magit
-  :bind ("C-x g" . magit-status))
+  :bind
+  ("C-x g" . magit-status)
+  :custom
+  (magit-diff-refine-hunk t)
+  (magit-save-repository-buffers nil))
 
 ;; Show cursor line and column in the modeline.
 (line-number-mode 1)
