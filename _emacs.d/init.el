@@ -1,7 +1,12 @@
 ;;; -*- lexical-binding: t -*-
 
-;; Speed up initialization by increasing garbage collection threshold.
-(setq gc-cons-threshold (* 100 1024 1024))
+;; Speed up initialization by increasing garbage collection values.
+(setq gc-cons-threshold (* 400 1024 1024)
+      gc-cons-percentage 0.6)
+
+;; Not going to use package.el, disable it.
+(setq package-enable-at-startup nil
+      package--init-file-ensured t)
 
 ;; Always load newest bytecode.
 (setq load-prefer-newer t)
@@ -49,7 +54,8 @@
       scroll-margin 1
       hscroll-margin 1
       scroll-conservatively 101
-      scroll-preserve-screen-position t)
+      scroll-preserve-screen-position t
+      auto-window-vscroll nil)
 
 ;; Configure and display line numbers.
 (setq-default display-line-numbers-type t
@@ -221,8 +227,9 @@
   :hook (after-init . jm/toggle-color-theme)
   :bind ("C-c t" . jm/toggle-color-theme))
 
-;; Reset garbage collection threshold when idle for 10 seconds.
+;; Reset garbage collection values when idle for 10 seconds.
 (run-with-idle-timer
  10 nil
  (lambda ()
-   (setq gc-cons-threshold (car (get 'gc-cons-threshold 'standard-value)))))
+   (setq gc-cons-threshold (car (get 'gc-cons-threshold 'standard-value)))
+   (setq gc-cons-percentage (car (get 'gc-cons-percentage 'standard-value)))))
