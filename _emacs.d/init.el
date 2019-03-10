@@ -136,7 +136,7 @@
    (forward-line -2)
    (indent-according-to-mode)))
 
-(defun move-line-down ()
+(defun jm/move-line-down ()
   (interactive)
   (jm/with-preserve-point
    (forward-line 1)
