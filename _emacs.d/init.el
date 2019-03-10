@@ -228,7 +228,8 @@
       (setq jm/color-theme jm/dark-color-theme)))))
 
 (use-package doom-themes
-  :hook (after-init . jm/toggle-color-theme)
+  :demand t
+  :config (jm/toggle-color-theme)
   :bind ("C-c t" . jm/toggle-color-theme))
 
 ;; Reset garbage collection values when idle for 10 seconds.
