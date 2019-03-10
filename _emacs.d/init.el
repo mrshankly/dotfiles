@@ -178,6 +178,10 @@
   (company-tooltip-limit 10)
   (company-tooltip-minimum 10))
 
+;; Version control.
+(use-package magit
+  :bind ("C-x g" . magit-status))
+
 ;; Show cursor line and column in the modeline.
 (line-number-mode 1)
 (column-number-mode 1)
