@@ -212,11 +212,7 @@
 (use-package company
   :hook
   (prog-mode . company-mode)
-  :bind (;; Remap emacs standard keybindings.
-         ([remap completion-at-point] . company-manual-begin)
-         ([remap complete-symbol] . company-manual-begin)
-
-         ;; Apply the following keybindings only when the completion
+  :bind (;; Apply the following keybindings only when the completion
          ;; menu is active.
          :map company-active-map
 
