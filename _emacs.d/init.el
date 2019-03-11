@@ -51,7 +51,7 @@
       mouse-wheel-progressive-speed nil
       scroll-step 1
       hscroll-step 1
-      scroll-margin 1
+      scroll-margin 5
       hscroll-margin 1
       scroll-conservatively 101
       scroll-preserve-screen-position t
