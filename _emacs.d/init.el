@@ -14,6 +14,9 @@
 ;; Answer questions with a simple y/n.
 (fset 'yes-or-no-p #'y-or-n-p)
 
+;; Decrease time to display incomplete keystrokes.
+(setq echo-keystrokes 0.2)
+
 ;; Just kill the damn processes.
 (setq confirm-kill-processes nil)
 
@@ -94,6 +97,14 @@
     (setq show-trailing-whitespace nil)))
 
 (add-hook 'after-change-major-mode-hook #'jm/maybe-hide-trailing-whitespace)
+
+;; Enable recursive minibuffers and show on which level we are.
+(setq enable-recursive-minibuffers t)
+(minibuffer-depth-indicate-mode 1)
+
+;; Show cursor line and column in the modeline.
+(line-number-mode 1)
+(column-number-mode 1)
 
 ;; Configure graphic display.
 (when (display-graphic-p)
@@ -185,28 +196,41 @@
   :straight nil
   :bind ([remap list-buffers] . ibuffer))
 
-;; Use `ido-mode' for improved completion of buffers and files.
-(use-package ido
-  :straight nil
-  :demand t
-  :config
-  (ido-mode 1)
-  :custom
-  (ido-everywhere t)
-  (ido-enable-prefix nil)
-  (ido-enable-flex-matching t)
-  (ido-create-new-buffer 'always)
-  (ido-default-buffer-method 'selected-window)
-  (ido-default-file-method 'selected-window))
-
 ;; Display available keybindings.
 (use-package which-key
-  :hook (after-init . which-key-mode)
-  :custom (which-key-sort-order 'which-key-prefix-then-key-order))
+  :hook
+  (after-init . which-key-mode)
+  :custom
+  (which-key-idle-delay 0.5)
+  (which-key-sort-order 'which-key-prefix-then-key-order))
 
 ;; Highlight TODO and similar keywords.
 (use-package hl-todo
   :hook (prog-mode . hl-todo-mode))
+
+;; Improve minibuffer completion with `ivy' and `counsel'.
+(use-package ivy
+  :demand t
+  :bind
+  ("C-x B" . ivy-switch-buffer-other-window)
+  :config
+  (ivy-mode 1)
+  :custom
+  (ivy-wrap t)
+  (ivy-height 10)
+  (ivy-magic-tilde nil)
+  (ivy-use-virtual-buffers t)
+  (ivy-dynamic-exhibit-delay-ms 200))
+
+(use-package counsel
+  :demand t
+  :after ivy
+  :config (counsel-mode 1))
+
+;; Alternative to `i-search' that uses `ivy'.
+(use-package swiper
+  :after ivy
+  :bind ("C-s" . swiper))
 
 ;; Text completion with `company'.
 (use-package company
@@ -246,10 +270,6 @@
   :custom
   (magit-diff-refine-hunk t)
   (magit-save-repository-buffers nil))
-
-;; Show cursor line and column in the modeline.
-(line-number-mode 1)
-(column-number-mode 1)
 
 ;; Icon fonts.
 (use-package all-the-icons)
