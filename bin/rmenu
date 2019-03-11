@@ -21,6 +21,7 @@ rofi_stub() {
     local color_window="${background},${background}"
 
     rofi -matching 'normal'                            \
+         -no-case-sensitive                            \
          -font 'Iosevka 13'                            \
          -terminal 'urxvtc'                            \
          -lines 10                                     \
