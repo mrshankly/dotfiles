@@ -208,6 +208,9 @@
 (use-package hl-todo
   :hook (prog-mode . hl-todo-mode))
 
+;; Better fuzzy matching.
+(use-package flx)
+
 ;; Improve minibuffer completion with `ivy' and `counsel'.
 (use-package ivy
   :demand t
@@ -220,7 +223,9 @@
   (ivy-height 10)
   (ivy-magic-tilde nil)
   (ivy-use-virtual-buffers t)
-  (ivy-dynamic-exhibit-delay-ms 200))
+  (ivy-dynamic-exhibit-delay-ms 200)
+  (ivy-re-builders-alist '((swiper . ivy--regex-plus)
+                           (t . ivy--regex-fuzzy))))
 
 (use-package counsel
   :demand t
