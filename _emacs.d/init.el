@@ -279,8 +279,11 @@
 
 ;; Version control.
 (use-package magit
-  :bind
-  ("C-x g" . magit-status)
+  :bind (;; As recommended by the documentation.
+         ("C-x g" . magit-status)
+         ;; Helper to unstage everything while in `magit-mode'.
+         :map magit-mode-map
+         ("U" . magit-unstage-all))
   :custom
   (magit-diff-refine-hunk t)
   (magit-save-repository-buffers nil))
