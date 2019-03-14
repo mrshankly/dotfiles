@@ -1,8 +1,17 @@
 ;;; -*- lexical-binding: t -*-
 
-;; Speed up initialization by increasing garbage collection values.
-(setq gc-cons-threshold (* 400 1024 1024)
-      gc-cons-percentage 0.6)
+;; Speed up initialization.
+(defvar original-file-name-handler-alist file-name-handler-alist)
+
+(setq gc-cons-percentage 0.6
+      gc-cons-threshold (* 400 1024 1024)
+      message-log-max (* 16 1024)
+      file-name-handler-alist nil)
+
+(defun jm/reset-file-name-handler-alist ()
+  (setq file-name-handler-alist original-file-name-handler-alist))
+
+(add-hook 'after-init-hook #'jm/reset-file-name-handler-alist)
 
 ;; Not going to use package.el, disable it.
 (setq package-enable-at-startup nil
