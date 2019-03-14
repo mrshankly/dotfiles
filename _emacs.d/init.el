@@ -334,6 +334,21 @@
   :config (jm/toggle-color-theme)
   :bind ("C-c t" . jm/toggle-color-theme))
 
+;; Programming languages configurations.
+
+;; Syntax based indentation of SQL code.
+(use-package sql-indent
+  :hook (sql-mode . sqlind-minor-mode))
+
+;; Markdown major mode.
+(use-package markdown-mode
+  :mode (("README\\.md\\'" . gfm-mode)
+         ("\\.md\\'" . markdown-mode)
+         ("\\.markdown\\'" . markdown-mode))
+  :init
+  (setq markdown-command
+        "pandoc -f gfm -t html5 --mathjax --highlight-style pygments -s --quiet"))
+
 ;; Reset garbage collection values when idle for 10 seconds.
 (run-with-idle-timer
  10 nil
