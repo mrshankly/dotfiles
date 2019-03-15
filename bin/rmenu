@@ -21,7 +21,6 @@ rofi_stub() {
     local color_window="${background},${background}"
 
     rofi -matching 'normal'                            \
-         -no-case-sensitive                            \
          -font 'Iosevka 13'                            \
          -terminal 'urxvtc'                            \
          -lines 10                                     \
@@ -41,7 +40,7 @@ rofi_run() {
     foreground="argb:ffebe6d4"
     fhighlight="argb:ffead068"
 
-    rofi_stub -show run
+    rofi_stub -no-case-sensitive -show run
 }
 
 rofi_pass() {
@@ -53,7 +52,7 @@ rofi_pass() {
     local password_fname=$(find "${password_store}" -type f -name '*.gpg' -printf '%P\n' |
                            sed -e 's/\.gpg$//'                                           |
                            sort                                                          |
-                           rofi_stub -dmenu -p 'pass')
+                           rofi_stub -dmenu -i -p 'pass')
 
     if [ -n "${password_fname:+set}" ]; then
         pass -c "${password_fname}" 1>/dev/null 2>&1
