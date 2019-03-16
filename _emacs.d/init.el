@@ -133,40 +133,6 @@
 ;; Follow symbolic links under version control.
 (setq-default vc-follow-symlinks t)
 
-;; Move the current line up or down while preserving the point's position
-;; and fixing indentation if needed.
-(defmacro jm/with-preserve-point (&rest body)
-  `(let ((distance 0)
-         (column (current-column)))
-
-     ;; Calculate the distance from point until the end of the line.
-     (end-of-line)
-     (setq distance (- (current-column) column))
-
-     ,@body
-
-     ;; Restore the original point position.
-     (end-of-line)
-     (move-to-column (- (current-column) distance))))
-
-(defun jm/move-line-up ()
-  (interactive)
-  (jm/with-preserve-point
-   (transpose-lines 1)
-   (forward-line -2)
-   (indent-according-to-mode)))
-
-(defun jm/move-line-down ()
-  (interactive)
-  (jm/with-preserve-point
-   (forward-line 1)
-   (transpose-lines 1)
-   (forward-line -1)
-   (indent-according-to-mode)))
-
-(global-set-key (kbd "M-<up>") #'jm/move-line-up)
-(global-set-key (kbd "M-<down>") #'jm/move-line-down)
-
 ;; Bootstrap straight.el.
 (defvar bootstrap-version)
 (let ((bootstrap-file
@@ -216,6 +182,12 @@
 ;; Highlight TODO and similar keywords.
 (use-package hl-todo
   :hook (prog-mode . hl-todo-mode))
+
+;; Moves lines of text up and down.
+(use-package lift
+  :straight (:host github :repo "mrshankly/lift.el")
+  :bind (("M-<up>" . lift-lines-up)
+         ("M-<down>" . lift-lines-down)))
 
 ;; Better fuzzy matching.
 (use-package flx)
