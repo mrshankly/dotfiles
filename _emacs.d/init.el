@@ -308,18 +308,40 @@
 
 ;; Programming languages configurations.
 
-;; Syntax based indentation of SQL code.
+;; OCaml - Major mode provided by `tuareg', context sensitive completion with
+;; `merlin', indentation with `ocp-indent' and formatting with `ocamlformat'.
+(use-package tuareg
+  :custom (tuareg-match-patterns-aligned t))
+
+(defun add-ocamlformat-before-save-local-hook ()
+  (add-hook 'before-save-hook 'ocamlformat-before-save nil 'local))
+
+;; Use the opam installed `merlin', `ocp-indent' and `ocamlformat'.
+(let ((opam-share (ignore-errors (car (process-lines "opam" "config" "var" "share")))))
+  (when (and opam-share (file-directory-p opam-share))
+    (add-to-list 'load-path (expand-file-name "emacs/site-lisp" opam-share))
+    (use-package merlin
+      :straight nil
+      :hook (tuareg-mode . merlin-mode))
+    (use-package ocp-indent
+      :straight nil
+      :demand t)
+    (use-package ocamlformat
+      :straight nil
+      :demand t
+      :hook (tuareg-mode . add-ocamlformat-before-save-local-hook))))
+
+;; SQL - Syntax based indentation.
 (use-package sql-indent
   :hook (sql-mode . sqlind-minor-mode))
 
-;; Markdown major mode.
+;; Markdown.
 (use-package markdown-mode
   :mode (("README\\.md\\'" . gfm-mode)
          ("\\.md\\'" . markdown-mode)
          ("\\.markdown\\'" . markdown-mode))
-  :init
-  (setq markdown-command
-        "pandoc -f gfm -t html5 --mathjax --highlight-style pygments -s --quiet"))
+  :custom
+  (markdown-command "pandoc -f gfm -t html5 --mathjax --highlight-style pygments -s --quiet"))
 
 ;; Reset garbage collection values when idle for 10 seconds.
 (run-with-idle-timer
