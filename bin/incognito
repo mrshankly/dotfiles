@@ -1,0 +1,10 @@
+#!/bin/sh
+
+set -e
+
+cache_dir="${XDG_CACHE_HOME:-$HOME/.cache}"
+temp_dir="$(mktemp -d -- "${cache_dir}/firefox-XXXXXX")"
+
+mkdir -p -- "${cache_dir}"
+trap "rm -rf -- '${temp_dir}'" INT TERM EXIT
+firefox -profile "${temp_dir}" -no-remote "$@"
