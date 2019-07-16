@@ -15,7 +15,7 @@ export XDG_CACHE_HOME="${HOME}/.cache"
 
 # Stop polluting my home folder with dotfiles.
 
-export XAUTHORITY="${XDG_RUNTIME_DIR}/Xauthority"
+#export XAUTHORITY="${XDG_RUNTIME_DIR}/Xauthority"
 export ICEAUTHORITY="${XDG_RUNTIME_DIR}/ICEauthority"
 
 export GNUPGHOME="${XDG_CONFIG_HOME}/gnupg"
