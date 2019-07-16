@@ -329,7 +329,13 @@
     (use-package ocamlformat
       :straight nil
       :demand t
-      :hook (tuareg-mode . add-ocamlformat-before-save-local-hook))))
+      :hook (tuareg-mode . add-ocamlformat-before-save-local-hook)
+      :custom (ocamlformat-enable 'enable-outside-detected-project))))
+
+;; Rust.
+(use-package rust-mode
+  :mode ("\\.rs\\'" . rust-mode)
+  :custom (rust-format-on-save t))
 
 ;; SQL - Syntax based indentation.
 (use-package sql-indent
@@ -342,6 +348,11 @@
          ("\\.markdown\\'" . markdown-mode))
   :custom
   (markdown-command "pandoc -f gfm -t html5 --mathjax --highlight-style pygments -s --quiet"))
+
+;; Eglot - LSP client.
+(use-package eglot
+  :hook
+  (rust-mode . eglot-ensure))
 
 ;; Reset garbage collection values when idle for 10 seconds.
 (run-with-idle-timer
