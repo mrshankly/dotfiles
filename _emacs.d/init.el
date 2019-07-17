@@ -39,8 +39,7 @@
   (message ""))
 
 ;; Save open buffers, cursor position and always start maximized.
-;; (add-to-list 'initial-frame-alist '(fullscreen . maximized))
-;; (setq desktop-restore-frames nil)
+(setq desktop-restore-frames nil)
 (desktop-save-mode 1)
 (save-place-mode 1)
 
