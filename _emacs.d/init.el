@@ -87,6 +87,14 @@
 ;; Highlight current line.
 (global-hl-line-mode 1)
 
+;; Don't highlight current line on some modes.
+(defun jm/maybe-hide-current-line-highlight ()
+  (when (derived-mode-p 'term-mode
+                        'shell-mode)
+    (global-hl-line-mode -1)))
+
+(add-hook 'after-change-major-mode-hook #'jm/maybe-hide-current-line-highlight)
+
 ;; Highlight matching brackets and insert by pair.
 (show-paren-mode 1)
 (electric-pair-mode 1)
