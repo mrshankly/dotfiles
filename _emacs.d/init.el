@@ -39,6 +39,7 @@
   (message ""))
 
 ;; Save open buffers, cursor position and always start maximized.
+(add-to-list 'initial-frame-alist '(fullscreen . maximized))
 (setq desktop-restore-frames nil)
 (desktop-save-mode 1)
 (save-place-mode 1)
@@ -269,7 +270,8 @@
   :custom
   (doom-modeline-major-mode-icon nil)
   (doom-modeline-minor-modes t)
-  (doom-modeline-enable-word-count t))
+  (doom-modeline-enable-word-count t)
+  (doom-modeline-checker-simple-format nil))
 
 ;; Hide minor-modes in a menu.
 (use-package minions
@@ -281,7 +283,7 @@
 ;; dark and light color themes.
 (defvar jm/dark-color-theme 'doom-one)
 (defvar jm/light-color-theme 'doom-one-light)
-(defvar jm/color-theme jm/light-color-theme)
+(defvar jm/color-theme jm/dark-color-theme)
 
 (defun jm/toggle-color-theme ()
   (interactive)
