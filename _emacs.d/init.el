@@ -110,7 +110,8 @@
 ;; Don't show trailing whitespace on some modes.
 (defun jm/maybe-hide-trailing-whitespace ()
   (when (derived-mode-p 'term-mode
-                        'shell-mode)
+                        'shell-mode
+                        'cargo-process-mode)
     (setq show-trailing-whitespace nil)))
 
 (add-hook 'after-change-major-mode-hook #'jm/maybe-hide-trailing-whitespace)
@@ -345,6 +346,9 @@
 (use-package rust-mode
   :mode ("\\.rs\\'" . rust-mode)
   :custom (rust-format-on-save t))
+
+(use-package cargo
+  :hook (rust-mode . cargo-minor-mode))
 
 ;; SQL - Syntax based indentation.
 (use-package sql-indent
