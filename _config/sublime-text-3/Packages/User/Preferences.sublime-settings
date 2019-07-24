@@ -9,7 +9,6 @@
 	"copy_with_empty_selection": false,
 	"default_line_ending": "unix",
 	"drag_text": false,
-	"draw_indent_guides": true,
 	"draw_minimap_border": true,
 	"ensure_newline_at_eof_on_save": true,
 	"font_face": "Fira Code Medium",
@@ -21,10 +20,9 @@
 	"highlight_line": true,
 	"highlight_modified_tabs": true,
 	"hot_exit": true,
-	"indent_guide_options":
+	"ignored_packages":
 	[
-		"draw_normal",
-		"draw_active"
+		"Vintage"
 	],
 	"line_padding_bottom": 1,
 	"line_padding_top": 1,
