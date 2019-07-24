@@ -1,22 +1,22 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 set -e
 
 yn() {
-	printf "${1} [y/N] "
-	read -r reply && case "${reply}" in
-		y|Y|[yY][eE][sS]) return 0 ;;
-		               *) return 1 ;;
-	esac
+    printf "${1} [y/N] "
+    read -r reply && case "${reply}" in
+        y|Y|[yY][eE][sS]) return 0 ;;
+                       *) return 1 ;;
+    esac
 }
 
 linkdf() {
-	local source="${1}"
-	local target="$(echo "${HOME}/.${source#./_*}" | sed -e 's/\/_/\/./')"
+    local source="${1}"
+    local target="$(echo "${HOME}/.${source#./_*}" | sed -e 's/\/_/\/./')"
 
-	chmod go-rwx "${source}"
-	mkdir -p -m 700 -- "$(dirname "${target}")"
-	ln -fs -- "$(realpath "${source}")" "${target}"
+    chmod go-rwx "${source}"
+    mkdir -p -m 700 -- "$(dirname "${target}")"
+    ln -fs -- "$(realpath "${source}")" "${target}"
 }
 
 mkdir -p "${HOME}/.cache"  \
@@ -45,58 +45,58 @@ mkdir -p "${HOME}/var/dl"  \
          "${HOME}/var/tr"
 
 if yn 'Link binaries?'; then
-	for binary in $(find bin -type f -executable); do
-		ln -fs -- "$(realpath "${binary}")" "${HOME}/.local/bin"
-	done
+    find bin -type f -executable -print0 | while IFS= read -r -d '' binary; do
+        ln -fs -- "$(realpath "${binary}")" "${HOME}/.local/bin"
+    done
 fi
 
 if yn 'Link dotfiles?'; then
-	for source in $(find . -maxdepth 1 -name '_*' | sort); do
-		if [ -d "${source}" ]; then
-			for dotfile in $(find "${source}" -type f | sort); do
-				linkdf "${dotfile}"
-			done
-		elif [ -f "${source}" ]; then
-			linkdf "${source}"
-		fi
-	done
+    find . -maxdepth 1 -name '_*' -print0 | sort | while IFS= read -r -d '' source; do
+        if [ -d "${source}" ]; then
+            find "${source}" -type f -print0 | sort | while IFS= read -r -d '' dotfile; do
+                linkdf "${dotfile}"
+            done
+        elif [ -f "${source}" ]; then
+            linkdf "${source}"
+        fi
+    done
 fi
 
 # System configurations are not symlinked.
 
 if yn 'Configure ssh client?'; then
-	mkdir -p -m 700 "${HOME}/.ssh"
-	install -m 600 system/ssh_config "${HOME}/.ssh/config"
+    mkdir -p -m 700 "${HOME}/.ssh"
+    install -m 600 system/ssh_config "${HOME}/.ssh/config"
 
-	printf 'Generating client key...\n'
-	rm -f "${HOME}/.ssh/id_ed25519"
-	ssh-keygen -t ed25519 -o -a 100 -f "${HOME}/.ssh/id_ed25519"
+    printf 'Generating client key...\n'
+    rm -f "${HOME}/.ssh/id_ed25519"
+    ssh-keygen -t ed25519 -o -a 100 -f "${HOME}/.ssh/id_ed25519"
 
-	if yn 'Generate github key?'; then
-		printf 'Generating github key...\n'
-		rm -f "${HOME}/.ssh/id_ed25519_github"
-		ssh-keygen -t ed25519 -o -a 100 -f "${HOME}/.ssh/id_ed25519_github"
-	fi
+    if yn 'Generate github key?'; then
+        printf 'Generating github key...\n'
+        rm -f "${HOME}/.ssh/id_ed25519_github"
+        ssh-keygen -t ed25519 -o -a 100 -f "${HOME}/.ssh/id_ed25519_github"
+    fi
 
-	if yn 'Generate bitbucket key?'; then
-		printf 'Generating bitbucket key...\n'
-		rm -f "${HOME}/.ssh/id_ed25519_bitbucket"
-		ssh-keygen -t ed25519 -o -a 100 -f "${HOME}/.ssh/id_ed25519_bitbucket"
-	fi
+    if yn 'Generate bitbucket key?'; then
+        printf 'Generating bitbucket key...\n'
+        rm -f "${HOME}/.ssh/id_ed25519_bitbucket"
+        ssh-keygen -t ed25519 -o -a 100 -f "${HOME}/.ssh/id_ed25519_bitbucket"
+    fi
 fi
 
 if yn 'Configure ssh server?'; then
-	sudo groupadd -f -r ssh
-	sudo usermod -aG ssh "${USER}"
+    sudo groupadd -f -r ssh
+    sudo usermod -aG ssh "${USER}"
 
-	sudo install -Dm 644 system/sshd_config /etc/ssh/sshd_config
+    sudo install -Dm 644 system/sshd_config /etc/ssh/sshd_config
 
-	printf 'Generating host key...\n'
-	sudo rm -f /etc/ssh/ssh_host_*key*
-	sudo ssh-keygen -t ed25519 -f /etc/ssh/ssh_host_ed25519_key -N '' < /dev/null
+    printf 'Generating host key...\n'
+    sudo rm -f /etc/ssh/ssh_host_*key*
+    sudo ssh-keygen -t ed25519 -f /etc/ssh/ssh_host_ed25519_key -N '' < /dev/null
 fi
 
 if yn 'Configure nginx?'; then
-	sudo useradd -r -U -s /usr/bin/nologin http
-	sudo install -Dm 644 system/nginx.conf /etc/nginx/nginx.conf
+    sudo useradd -r -U -s /usr/bin/nologin http
+    sudo install -Dm 644 system/nginx.conf /etc/nginx/nginx.conf
 fi
