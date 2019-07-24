@@ -12,7 +12,7 @@
 	"draw_indent_guides": true,
 	"draw_minimap_border": true,
 	"ensure_newline_at_eof_on_save": true,
-	"font_face": "Iosevka",
+	"font_face": "Fira Code Medium",
 	"font_options":
 	[
 		"no_calt"
@@ -20,7 +20,7 @@
 	"font_size": 13,
 	"highlight_line": true,
 	"highlight_modified_tabs": true,
-	"hot_exit": false,
+	"hot_exit": true,
 	"indent_guide_options":
 	[
 		"draw_normal",
