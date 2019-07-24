@@ -4,7 +4,7 @@
 	"auto_find_in_selection": true,
 	"block_caret": true,
 	"caret_style": "solid",
-	"close_windows_when_empty": true,
+	"close_windows_when_empty": false,
 	"color_scheme": "Packages/gruvbox/gruvbox (Dark) (Medium).sublime-color-scheme",
 	"copy_with_empty_selection": false,
 	"default_line_ending": "unix",
