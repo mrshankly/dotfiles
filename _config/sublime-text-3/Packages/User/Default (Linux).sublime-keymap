@@ -1,3 +1,4 @@
 [
     { "keys": ["alt+a"], "command": "alignment" },
+    { "keys": ["alt+l"], "command": "wrap_lines" }
 ]
