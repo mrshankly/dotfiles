@@ -60,6 +60,11 @@ if yn 'Link dotfiles?'; then
             linkdf "${source}"
         fi
     done
+
+    if yn 'Install vim-plug?'; then
+        curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+            https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    fi
 fi
 
 # System configurations are not symlinked.
