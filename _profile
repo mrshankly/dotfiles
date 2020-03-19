@@ -31,6 +31,8 @@ export OCP_INDENT_CONFIG="$(cat "${XDG_CONFIG_HOME}/ocp/ocp-indent.conf")"
 export CARGO_HOME="${XDG_DATA_HOME}/cargo"
 export RUSTUP_HOME="${XDG_DATA_HOME}/rustup"
 
+export STACK_ROOT="${XDG_DATA_HOME}/stack"
+
 export LEDGER_FILE="${HOME}/usr/ledger/journal.ledger"
 export BC_ENV_ARGS="--mathlib --quiet ${XDG_CONFIG_HOME}/bc/bcrc"
 
