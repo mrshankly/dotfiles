@@ -4,6 +4,8 @@ syntax enable
 set encoding=utf-8
 set fileencoding=utf-8
 
+set shortmess+=I
+
 set nobackup
 set noswapfile
 set lazyredraw
@@ -36,9 +38,16 @@ set laststatus=2
 set noshowmode
 
 call plug#begin()
+  " Colorscheme and status line.
   Plug 'morhetz/gruvbox'
   Plug 'itchyny/lightline.vim'
+  " Syntax highlighting and indentation rules for multiple languages.
+  Plug 'sheerun/vim-polyglot'
+  " Add readline key bindings to where it makes sense.
+  Plug 'tpope/vim-rsi'
+  " Easily comment and surround stuff.
   Plug 'tpope/vim-surround'
+  Plug 'tpope/vim-commentary'
   Plug 'tpope/vim-repeat'
 call plug#end()
 
@@ -51,6 +60,7 @@ function! TrimTrailingWhitespace() abort
   call winrestview(l:view)
 endfunction
 
-let mapleader = ","
+let mapleader = ';'
 
 noremap <leader>ws :call TrimTrailingWhitespace()<CR>
+noremap <leader>cp :let @/ = ""<CR>
