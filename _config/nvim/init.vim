@@ -51,8 +51,11 @@ call plug#begin()
   Plug 'tpope/vim-repeat'
 call plug#end()
 
+set termguicolors
+set background=light
+
 colorscheme gruvbox
-let g:lightline = { 'colorscheme': 'seoul256' }
+let g:lightline = { 'colorscheme': 'gruvbox' }
 
 function! TrimTrailingWhitespace() abort
   let l:view = winsaveview()
@@ -60,7 +63,7 @@ function! TrimTrailingWhitespace() abort
   call winrestview(l:view)
 endfunction
 
-let mapleader = ';'
+let mapleader=';'
 
 noremap <leader>ws :call TrimTrailingWhitespace()<CR>
 noremap <leader>cp :let @/ = ""<CR>

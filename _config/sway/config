@@ -1,0 +1,207 @@
+# See sway(5), sway-input(5), sway-output(5) and sway-bar(5)
+# for more information on the configuration.
+#
+# See also swaymsg(1).
+#   To get the names of the inputs: swaymsg -t get_inputs
+#   To get the names of the outputs: swaymsg -t get_outputs
+
+# =======
+# General
+# =======
+
+xwayland disable
+focus_follows_mouse yes
+
+exec swayidle -w                                \
+     before-sleep 'swaylock -f -c 504945'       \
+     timeout 300  'swaylock -f -c 504945'       \
+     timeout 360  'swaymsg "output * dpms off"' \
+     resume       'swaymsg "output * dpms on"'
+
+# ======
+# Inputs
+# ======
+
+input type:keyboard {
+  repeat_delay 320
+  repeat_rate 35
+
+  xkb_layout us
+  xkb_model pc104
+  xkb_options compose:ralt
+}
+
+input "1:1:AT_Translated_Set_2_keyboard" {
+  xkb_model chromebook
+}
+
+input "4152:4986:SteelSeries_Kana_v2_Gaming_Mouse" {
+  left_handed disabled
+  accel_profile flat
+  pointer_accel -0.6
+}
+
+input "0:0:Cypress_APA_Trackpad_(cyapa)" {
+  dwt enabled
+  natural_scroll enabled
+  tap enabled
+  tap_button_map lmr
+  pointer_accel -0.25
+  scroll_factor 0.3
+  scroll_method two_finger
+}
+
+# ==========
+# Appearance
+# ==========
+
+set $bg0 6c7c8b
+set $fg0 000000
+set $fg1 a6aeae
+set $fg2 fbf1c7
+set $bd0 6c7c8b
+set $bd1 ca8555
+
+font pango:Iosevka Fixed 13
+output * background #$bg0 solid_color
+
+gaps inner 5
+default_border pixel 3
+
+# class                 border   background text
+client.focused          #$bd1    #$bd1      #$fg2
+client.focused_inactive #$bg0    #$fg1      #$bg0
+client.unfocused        #$bg0    #$fg1      #$bg0
+
+bar {
+  position top
+  status_command clock -m
+
+  colors {
+    background #$bg0
+    statusline #$fg0
+    focused_workspace  #$bg0 #$bg0 #$fg0
+    inactive_workspace #$bg0 #$bg0 #$fg1
+  }
+}
+
+# ============
+# Window Rules
+# ============
+
+for_window [title="Floating Alacritty"] floating enable
+
+# ============
+# Key Bindings
+# ============
+
+set $mod Mod1
+
+set $left h
+set $down j
+set $up k
+set $right l
+
+set $term alacritty
+set $browser firefox
+
+# Exit sway or reload its configuration.
+bindsym $mod+Shift+e exec swaymsg exit
+bindsym $mod+Shift+c reload
+
+# Launch applications.
+bindsym $mod+Return exec $term
+bindsym $mod+Shift+Return exec $term --title 'Floating Alacritty'
+
+bindsym $mod+w exec $browser
+
+bindsym $mod+9 exec pactl set-sink-volume '@DEFAULT_SINK@' -2%
+bindsym $mod+0 exec pactl set-sink-volume '@DEFAULT_SINK@' +2%
+bindsym $mod+m exec pactl set-sink-mute '@DEFAULT_SINK@' toggle
+
+# Drag and resize windows with mouse + $mod.
+floating_modifier $mod normal
+
+# Close focused window.
+bindsym $mod+q kill
+
+# Change focused window.
+bindsym $mod+$left focus left
+bindsym $mod+Left focus left
+
+bindsym $mod+$down focus down
+bindsym $mod+Down focus down
+
+bindsym $mod+$up focus up
+bindsym $mod+Up focus up
+
+bindsym $mod+$right focus right
+bindsym $mod+Right focus right
+
+# Move focused window.
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+Left move left
+
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+Down move down
+
+bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+Up move up
+
+bindsym $mod+Shift+$right move right
+bindsym $mod+Shift+Right move right
+
+# Resize focused window.
+mode "resize" {
+    bindsym $left resize shrink width 10px
+    bindsym Left resize shrink width 10px
+
+    bindsym $down resize grow height 10px
+    bindsym Down resize grow height 10px
+
+    bindsym $up resize shrink height 10px
+    bindsym Up resize shrink height 10px
+
+    bindsym $right resize grow width 10px
+    bindsym Right resize grow width 10px
+
+    # Return to default mode.
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
+# Switch to workspace.
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+
+# Move focused window to workspace.
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+
+# Vertical and horizontal split the focused window.
+bindsym $mod+minus splitv
+bindsym $mod+slash splith
+
+# Switch layout style of the focused windown.
+bindsym $mod+s layout toggle split
+bindsym $mod+t layout tabbed
+bindsym $mod+f fullscreen
+
+# Toggle between focus and tiling.
+bindsym $mod+u floating toggle
+bindsym $mod+Shift+u focus mode_toggle
+
+include /etc/sway/config.d/*

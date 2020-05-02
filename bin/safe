@@ -1,0 +1,29 @@
+#!/usr/bin/env sh
+
+set -e
+
+cmdname="$(basename "${0}")"
+
+usage() {
+  printf 'usage: %s [-h] [<pass_args>]\n' "${cmdname}"
+}
+
+open_safe() {
+  local pass_store="${PASSWORD_STORE_DIR:-$HOME/.password_store}"
+  local pass_fname="$(find "${pass_store}" -type f -name '*.gpg' -printf '%P\n' |
+                        sed -e 's/\.gpg$//'                                     |
+                        sort                                                    |
+                        fzf)"
+
+  if [ -n "${pass_fname:+set}" ]; then
+    pass show -c "${pass_fname}" 1>/dev/null 2>&1
+  fi
+}
+
+if [ $# -eq 0 ]; then
+  open_safe
+elif [ "${1}" = '-h' ] then
+  usage
+else
+  pass $@
+fi

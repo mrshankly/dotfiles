@@ -102,6 +102,8 @@ if yn 'Configure ssh server?'; then
 fi
 
 if yn 'Configure nginx?'; then
-    sudo useradd -r -U -s /usr/bin/nologin http
+    if ! id 'http' > /dev/null 2>&1; then
+      sudo useradd -r -U -s /usr/bin/nologin http
+    fi
     sudo install -Dm 644 system/nginx.conf /etc/nginx/nginx.conf
 fi
