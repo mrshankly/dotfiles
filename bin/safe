@@ -22,7 +22,7 @@ open_safe() {
 
 if [ $# -eq 0 ]; then
   open_safe
-elif [ "${1}" = '-h' ] then
+elif [ "${1}" = '-h' ]; then
   usage
 else
   pass $@
