@@ -75,7 +75,8 @@ client.unfocused        #$bg0    #$fg1      #$bg0
 
 bar {
   position top
-  status_command clock -m
+  pango_markup enabled
+  status_command status
 
   colors {
     background #$bg0
