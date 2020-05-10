@@ -14,8 +14,8 @@ focus_follows_mouse yes
 
 exec swayidle -w                                \
      before-sleep 'swaylock -f -c 504945'       \
-     timeout 300  'swaylock -f -c 504945'       \
-     timeout 360  'swaymsg "output * dpms off"' \
+     timeout 600  'swaylock -f -c 504945'       \
+     timeout 660  'swaymsg "output * dpms off"' \
      resume       'swaymsg "output * dpms on"'
 
 # ======
