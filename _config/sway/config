@@ -9,7 +9,7 @@
 # General
 # =======
 
-xwayland disable
+# xwayland disable
 focus_follows_mouse yes
 
 exec swayidle -w                                \
