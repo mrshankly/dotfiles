@@ -1,5 +1,5 @@
 export EDITOR='nvim'
-export PAGER='less -cRS'
+export PAGER='less -RS'
 export BROWSER='firefox'
 
 export MANWIDTH=80
