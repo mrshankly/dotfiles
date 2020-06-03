@@ -11,6 +11,9 @@ export PATH="${HOME}/.local/bin:${PATH}"
 # Enable firefox's wayland backend.
 export MOZ_ENABLE_WAYLAND=1
 
+# Fix Java GUI applications.
+export _JAVA_AWT_WM_NONREPARENTING=1
+
 # Stop polluting! Save the home folder!
 
 export XDG_CONFIG_HOME="${HOME}/.config"
