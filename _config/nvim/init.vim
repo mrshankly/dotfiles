@@ -49,6 +49,8 @@ call plug#begin()
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-commentary'
   Plug 'tpope/vim-repeat'
+  " Zig programming language support.
+  Plug 'ziglang/zig.vim'
 call plug#end()
 
 set termguicolors
