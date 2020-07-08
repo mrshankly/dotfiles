@@ -29,15 +29,11 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
-alias tmp='mkdir /tmp/$$ ; cd /tmp/$$'
-alias rmtmp='rm -rf /tmp/$$'
+alias tmp='cd "$(mktemp -d)"'
 
 alias n='nnn'
 alias tree='tree -C'
 alias pager='less -cRS'
 alias tmux="tmux -f \"${XDG_CONFIG_HOME}/tmux/tmux.conf\""
-
 alias gdb="gdb -q -nh -x \"${XDG_CONFIG_HOME}/gdb/init\""
-alias petite="petite --eehistory \"${XDG_CACHE_HOME}/chezscheme_history\""
-
 alias dlna="minidlnad -f ${XDG_CONFIG_HOME}/minidlna/minidlna.conf -P ${XDG_RUNTIME_DIR}/minidlna.pid -d -R > /dev/null"
