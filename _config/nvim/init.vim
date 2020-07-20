@@ -60,9 +60,11 @@ colorscheme gruvbox
 let g:lightline = { 'colorscheme': 'gruvbox' }
 
 function! TrimTrailingWhitespace() abort
-  let l:view = winsaveview()
-  keeppatterns %s/\s\+$//e
-  call winrestview(l:view)
+  if !&binary && &filetype != 'diff'
+    let l:view = winsaveview()
+    keeppatterns %s/\s\+$//e
+    call winrestview(l:view)
+  endif
 endfunction
 
 let mapleader=';'
