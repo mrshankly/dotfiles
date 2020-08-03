@@ -9,6 +9,7 @@ window:
     x: 2
     y: 2
 
+  dynamic_title: true
   dynamic_padding: true
   decorations: full
   startup_mode: Windowed
@@ -36,7 +37,6 @@ font:
   size: 14.0
   use_thin_strokes: false
 
-dynamic_title: true
 live_config_reload: true
 
 # Startup directory
@@ -73,7 +73,7 @@ colors:
 background_opacity: 1.0
 draw_bold_text_with_bright_colors: false
 
-visual_bell:
+bell:
   animation: Linear
   duration: 0
   color: '0xffffff'
