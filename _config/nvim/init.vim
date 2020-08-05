@@ -29,6 +29,7 @@ set sidescrolloff=5
 set scrolloff=8
 
 set number
+set relativenumber
 set numberwidth=5
 
 set showmatch
