@@ -31,7 +31,7 @@ alias egrep='egrep --color=auto'
 
 alias tmp='cd "$(mktemp -d)"'
 
-alias n='nnn'
+alias n='nnn -Cd'
 alias tree='tree -C'
 alias pager='less -cRS'
 alias tmux="tmux -f \"${XDG_CONFIG_HOME}/tmux/tmux.conf\""
