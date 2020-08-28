@@ -12,7 +12,7 @@ usage() {
 while getopts 'lf:' o; do
   case "${o}" in
     l) lst=true                      ;;
-    f) fmt="--ytdl-format ${OPTARG}" ;;
+    f) fmt="--ytdl-format=${OPTARG}" ;;
     *) usage                         ;;
   esac
 done && shift $((OPTIND - 1)) && test $# -ne 1 && usage
