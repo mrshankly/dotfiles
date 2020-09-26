@@ -252,7 +252,8 @@
   (company-tooltip-limit 10)
   (company-tooltip-minimum 10))
 
-;; Emulate vim with `evil' and surround.vim with `evil-surround'.
+;; Emulate vim with `evil', surround.vim with `evil-surround' and
+;; increment/decrement numbers with `evil-numbers'.
 (use-package evil
   :demand t
   :config
@@ -264,6 +265,16 @@
 (use-package evil-surround
   :demand t
   :config (global-evil-surround-mode 1))
+
+(use-package evil-numbers
+  :demand t
+  :bind (;; Apply the following keybindings only in normal and visual state.
+         :map evil-normal-state-map
+         ("C-i" . evil-numbers/inc-at-pt)
+         ("C-d" . evil-numbers/dec-at-pt)
+         :map evil-visual-state-map
+         ("C-i" . evil-numbers/inc-at-pt)
+         ("C-d" . evil-numbers/dec-at-pt)))
 
 ;; Version control.
 (use-package magit
