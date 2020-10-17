@@ -333,10 +333,6 @@
   :config (jm/toggle-color-theme)
   :bind ("C-c t" . jm/toggle-color-theme))
 
-(use-package projectile
-  :bind-keymap (("C-c p" . projectile-command-map))
-  :config (projectile-mode +1))
-
 ;; Programming languages configurations.
 
 ;; C and languages with similar syntax.
