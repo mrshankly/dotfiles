@@ -106,4 +106,12 @@ if yn 'Configure nginx?'; then
       sudo useradd -r -U -s /usr/bin/nologin http
     fi
     sudo install -Dm 644 system/nginx.conf /etc/nginx/nginx.conf
+
+    sudo rm -rf /etc/nginx/ssl
+    sudo mkdir -p -m 700 /etc/nginx/ssl
+
+    sudo su -c 'openssl req -x509 -newkey rsa:4096 -nodes -sha256 -days 3650 \
+      -out /etc/nginx/ssl/localhost.crt -keyout /etc/nginx/ssl/localhost.key \
+      -subj "/CN=localhost" -extensions EXT -config <(                       \
+      printf "[dn]\nCN=localhost\n[req]\ndistinguished_name = dn\n[EXT]\nsubjectAltName=DNS:localhost\nkeyUsage=digitalSignature\nextendedKeyUsage=serverAuth")'
 fi
