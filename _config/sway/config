@@ -105,12 +105,15 @@ set $right l
 
 set $term alacritty
 set $browser firefox
+set $menu bemenu-run
 
 # Exit sway or reload its configuration.
 bindsym $mod+Shift+e exec swaymsg exit
 bindsym $mod+Shift+c reload
 
 # Launch applications.
+bindsym $mod+p exec $menu
+
 bindsym $mod+Return exec $term
 bindsym $mod+Shift+Return exec $term --title 'Floating Alacritty'
 
