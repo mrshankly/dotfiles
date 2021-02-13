@@ -112,8 +112,15 @@ bindsym $mod+w exec $browser
 
 bindsym $mod+9 exec pactl set-sink-volume '@DEFAULT_SINK@' -2%
 bindsym $mod+0 exec pactl set-sink-volume '@DEFAULT_SINK@' +2%
-bindsym $mod+m exec mute
 bindsym $mod+space exec mute -m
+bindsym $mod+m exec mute
+
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume '@DEFAULT_SINK@' -2%
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume '@DEFAULT_SINK@' +2%
+bindsym XF86AudioMute exec mute
+
+bindsym XF86MonBrightnessDown exec light -5%
+bindsym XF86MonBrightnessUp exec light +5%
 
 # Drag and resize windows with mouse + $mod.
 floating_modifier $mod normal
