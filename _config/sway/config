@@ -55,7 +55,7 @@ input "0:0:Cypress_APA_Trackpad_(cyapa)" {
 # Appearance
 # ==========
 
-set $bg0 6c7c8b
+set $bg0 56626e
 set $fg0 000000
 set $fg1 a6aeae
 set $fg2 fbf1c7
@@ -74,16 +74,7 @@ client.focused_inactive #$bg0    #$fg1      #$bg0
 client.unfocused        #$bg0    #$fg1      #$bg0
 
 bar {
-  position top
-  pango_markup enabled
-  status_command status
-
-  colors {
-    background #$bg0
-    statusline #$fg0
-    focused_workspace  #$bg0 #$bg0 #$fg0
-    inactive_workspace #$bg0 #$bg0 #$fg1
-  }
+  swaybar_command waybar
 }
 
 # ============
@@ -121,7 +112,8 @@ bindsym $mod+w exec $browser
 
 bindsym $mod+9 exec pactl set-sink-volume '@DEFAULT_SINK@' -2%
 bindsym $mod+0 exec pactl set-sink-volume '@DEFAULT_SINK@' +2%
-bindsym $mod+m exec pactl set-sink-mute '@DEFAULT_SINK@' toggle
+bindsym $mod+m exec mute
+bindsym $mod+space exec mute -m
 
 # Drag and resize windows with mouse + $mod.
 floating_modifier $mod normal
