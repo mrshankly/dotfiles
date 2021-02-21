@@ -1,40 +1,40 @@
 {
-  "layer": "top",
-    "position": "top",
-    "modules-left": ["sway/workspaces", "sway/mode"],
-    "modules-center": ["sway/window"],
-    "modules-right": ["pulseaudio", "battery", "clock"],
-    "clock": {
-      "format": "{:%Y-%m-%d %H:%M}",
-      "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+  "layer": "bottom",
+  "position": "top",
+  "modules-left": ["sway/workspaces", "sway/mode"],
+  "modules-center": ["sway/window"],
+  "modules-right": ["pulseaudio", "battery", "clock"],
+  "clock": {
+    "format": "{:%Y-%m-%d %H:%M}",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+  },
+  "battery": {
+    "states": {
+      "warning": 30,
+      "critical": 15
     },
-    "battery": {
-      "states": {
-        "warning": 30,
-        "critical": 15
-      },
-      "format": "{capacity}% {icon}",
-      "format-charging": "{capacity}% ",
-      "format-plugged": "{capacity}% ",
-      "format-alt": "{time} {icon}",
-      "format-icons": ["", "", "", "", ""]
+    "format": "{capacity}% {icon}",
+    "format-charging": "{capacity}% ",
+    "format-plugged": "{capacity}% ",
+    "format-alt": "{time} {icon}",
+    "format-icons": ["", "", "", "", ""]
+  },
+  "pulseaudio": {
+    "format": "{volume}% {icon} {format_source}",
+    "format-bluetooth": "{volume}% {icon} {format_source}",
+    "format-bluetooth-muted": " {icon} {format_source}",
+    "format-muted": " {format_source}",
+    "format-source": "{volume}% ",
+    "format-source-muted": "",
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": ["", "", ""]
     },
-    "pulseaudio": {
-      "format": "{volume}% {icon} {format_source}",
-      "format-bluetooth": "{volume}% {icon} {format_source}",
-      "format-bluetooth-muted": " {icon} {format_source}",
-      "format-muted": " {format_source}",
-      "format-source": "{volume}% ",
-      "format-source-muted": "",
-      "format-icons": {
-        "headphone": "",
-        "hands-free": "",
-        "headset": "",
-        "phone": "",
-        "portable": "",
-        "car": "",
-        "default": ["", "", ""]
-      },
-      "on-click": "pavucontrol"
-    }
+    "on-click": "pavucontrol"
+  }
 }

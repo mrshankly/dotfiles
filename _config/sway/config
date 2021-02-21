@@ -96,7 +96,7 @@ set $right l
 
 set $term alacritty
 set $browser firefox
-set $menu bemenu-run
+set $menu bemenu-run --fn 'Iosevka Fixed 13'
 
 # Exit sway or reload its configuration.
 bindsym $mod+Shift+e exec swaymsg exit
