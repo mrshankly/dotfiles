@@ -27,13 +27,13 @@ mkdir -p "${HOME}/src" \
          "${HOME}/usr" \
          "${HOME}/var"
 
-mkdir -p "${HOME}/usr/doc" \
-         "${HOME}/usr/dsk" \
-         "${HOME}/usr/img" \
-         "${HOME}/usr/msc" \
-         "${HOME}/usr/pub" \
-         "${HOME}/usr/tpl" \
-         "${HOME}/usr/vg"  \
+mkdir -p "${HOME}/usr/doc"    \
+         "${HOME}/usr/dsk"    \
+         "${HOME}/usr/img/ss" \
+         "${HOME}/usr/msc"    \
+         "${HOME}/usr/pub"    \
+         "${HOME}/usr/tpl"    \
+         "${HOME}/usr/vg"     \
          "${HOME}/usr/vid"
 
 mkdir -p -m 700 "${HOME}/usr/priv"

@@ -122,6 +122,10 @@ bindsym XF86AudioMute exec mute
 bindsym XF86MonBrightnessDown exec light -5%
 bindsym XF86MonBrightnessUp exec light +5%
 
+# Screenshots.
+bindsym Print exec grim
+bindsym Control+Print exec grim "$(slurp)"
+
 # Drag and resize windows with mouse + $mod.
 floating_modifier $mod normal
 
