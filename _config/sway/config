@@ -37,8 +37,12 @@ input "1:1:AT_Translated_Set_2_keyboard" {
 
 input "4152:4986:SteelSeries_Kana_v2_Gaming_Mouse" {
   left_handed disabled
-  accel_profile flat
-  pointer_accel -0.6
+  pointer_accel -0.7
+}
+
+input "5426:125:Razer_Razer_DeathAdder_V2_Pro" {
+  left_handed disabled
+  pointer_accel -0.7
 }
 
 input "0:0:Cypress_APA_Trackpad_(cyapa)" {
