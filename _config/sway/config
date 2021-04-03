@@ -128,7 +128,7 @@ bindsym XF86MonBrightnessUp exec light +5%
 
 # Screenshots.
 bindsym Print exec grim
-bindsym Control+Print exec grim "$(slurp)"
+bindsym Control+Print exec grim -g "$(slurp)"
 
 # Drag and resize windows with mouse + $mod.
 floating_modifier $mod normal
