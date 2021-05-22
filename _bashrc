@@ -34,5 +34,6 @@ alias tmp='cd "$(mktemp -d)"'
 alias n='nnn -Cd'
 alias tree='tree -C'
 alias pager='less -cRS'
+alias trr='transmission-remote'
 alias tmux="tmux -f \"${XDG_CONFIG_HOME}/tmux/tmux.conf\""
 alias gdb="gdb -q -nh -x \"${XDG_CONFIG_HOME}/gdb/init\""

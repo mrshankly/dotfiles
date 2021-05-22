@@ -54,6 +54,11 @@ input "0:0:Cypress_APA_Trackpad_(cyapa)" {
   scroll_factor 0.3
   scroll_method two_finger
 }
+# =======
+# Outputs
+# =======
+
+output 'Goldstar Company Ltd LG Ultra HD 0x00006337' scale 1.35
 
 # ==========
 # Appearance
