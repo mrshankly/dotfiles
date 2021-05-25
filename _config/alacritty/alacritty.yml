@@ -20,7 +20,7 @@ scrolling:
 
 font:
   normal:
-    family: Iosevka Fixed
+    family: JetBrains Mono
     style: Medium
   bold:
     style: Bold
@@ -34,7 +34,7 @@ font:
     x: 0
     y: 0
 
-  size: 14.0
+  size: 13.0
   use_thin_strokes: false
 
 live_config_reload: true
