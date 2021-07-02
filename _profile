@@ -1,18 +1,11 @@
 export EDITOR='nvim'
 export PAGER='less -RS'
-export BROWSER='firefox'
 
 export MANWIDTH=80
 export HISTSIZE=10000
 export HISTCONTROL=ignoreboth:erasedups
 
 export PATH="${HOME}/.local/bin:${PATH}"
-
-# Enable firefox's wayland backend.
-export MOZ_ENABLE_WAYLAND=1
-
-# Fix Java GUI applications.
-export _JAVA_AWT_WM_NONREPARENTING=1
 
 # Stop polluting! Save the home folder!
 
