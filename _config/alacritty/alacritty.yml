@@ -9,6 +9,7 @@ window:
     x: 2
     y: 2
 
+  opacity: 1.0
   dynamic_title: true
   dynamic_padding: true
   decorations: full
@@ -70,7 +71,6 @@ colors:
     cyan:    '#427b58'
     white:   '#3c3836'
 
-background_opacity: 1.0
 draw_bold_text_with_bright_colors: false
 
 bell:
