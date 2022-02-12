@@ -7,6 +7,10 @@ export HISTCONTROL=ignoreboth:erasedups
 
 export PATH="${HOME}/.local/bin:${PATH}"
 
+# Wayland stuff.
+
+export MOZ_DBUS_REMOTE=1
+
 # Stop polluting! Save the home folder!
 
 export XDG_CONFIG_HOME="${HOME}/.config"
