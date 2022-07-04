@@ -58,7 +58,7 @@ input "0:0:Cypress_APA_Trackpad_(cyapa)" {
 # Outputs
 # =======
 
-output 'Goldstar Company Ltd LG Ultra HD 0x00006337' scale 1.35
+output 'Goldstar Company Ltd LG Ultra HD 0x00006337' scale 1.4
 
 # ==========
 # Appearance
@@ -121,8 +121,8 @@ bindsym $mod+w exec $browser
 
 bindsym $mod+9 exec volume -1
 bindsym $mod+0 exec volume +1
-bindsym $mod+space exec mute -m
-bindsym $mod+m exec mute
+bindsym Control+space exec mute -m
+bindsym Control+m exec mute
 
 bindsym XF86AudioLowerVolume exec volume -1
 bindsym XF86AudioRaiseVolume exec volume +1
