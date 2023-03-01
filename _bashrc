@@ -32,6 +32,7 @@ alias egrep='egrep --color=auto'
 alias tmp='cd "$(mktemp -d)"'
 
 alias n='nnn -Cd'
+alias watch='watch '
 alias tree='tree -C'
 alias pager='less -cRS'
 alias trr='transmission-remote'

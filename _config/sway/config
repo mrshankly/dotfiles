@@ -54,11 +54,6 @@ input "0:0:Cypress_APA_Trackpad_(cyapa)" {
   scroll_factor 0.3
   scroll_method two_finger
 }
-# =======
-# Outputs
-# =======
-
-output 'Goldstar Company Ltd LG Ultra HD 0x00006337' scale 1.4
 
 # ==========
 # Appearance
@@ -71,7 +66,7 @@ set $fg2 fbf1c7
 set $bd0 6c7c8b
 set $bd1 ca8555
 
-font pango:Iosevka Fixed 13
+font pango:JetBrains Mono NL 13
 output * background #$bg0 solid_color
 
 gaps inner 5
@@ -90,7 +85,7 @@ bar {
 # Window Rules
 # ============
 
-for_window [title="Floating Alacritty"] floating enable
+for_window [title="Floating Terminal"] floating enable
 
 # ============
 # Key Bindings
@@ -103,9 +98,9 @@ set $down j
 set $up k
 set $right l
 
-set $term alacritty
+set $term wezterm
 set $browser firefox
-set $menu bemenu-run --fn 'Iosevka Fixed 13'
+set $menu bemenu-run --fn 'JetBrains Mono NL 13'
 
 # Exit sway or reload its configuration.
 bindsym $mod+Shift+e exec swaymsg exit
@@ -115,7 +110,7 @@ bindsym $mod+Shift+c reload
 bindsym $mod+p exec $menu
 
 bindsym $mod+Return exec $term
-bindsym $mod+Shift+Return exec $term --title 'Floating Alacritty'
+# bindsym $mod+Shift+Return exec $term --title 'Floating Terminal'
 
 bindsym $mod+w exec $browser
 
