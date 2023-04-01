@@ -98,7 +98,7 @@ set $down j
 set $up k
 set $right l
 
-set $term wezterm
+set $term kitty
 set $browser firefox
 set $menu bemenu-run --fn 'JetBrains Mono NL 13'
 
@@ -110,7 +110,7 @@ bindsym $mod+Shift+c reload
 bindsym $mod+p exec $menu
 
 bindsym $mod+Return exec $term
-# bindsym $mod+Shift+Return exec $term --title 'Floating Terminal'
+bindsym $mod+Shift+Return exec $term --title 'Floating Terminal'
 
 bindsym $mod+w exec $browser
 
