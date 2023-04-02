@@ -38,27 +38,8 @@ set matchtime=2
 set laststatus=2
 set noshowmode
 
-call plug#begin()
-  " Colorscheme and status line.
-  Plug 'morhetz/gruvbox'
-  Plug 'itchyny/lightline.vim'
-  " Syntax highlighting and indentation rules for multiple languages.
-  Plug 'sheerun/vim-polyglot'
-  " Add readline key bindings to where it makes sense.
-  Plug 'tpope/vim-rsi'
-  " Easily comment and surround stuff.
-  Plug 'tpope/vim-surround'
-  Plug 'tpope/vim-commentary'
-  Plug 'tpope/vim-repeat'
-  " Zig programming language support.
-  Plug 'ziglang/zig.vim'
-call plug#end()
-
 set termguicolors
 set background=light
-
-colorscheme gruvbox
-let g:lightline = { 'colorscheme': 'gruvbox' }
 
 function! TrimTrailingWhitespace() abort
   if !&binary && &filetype != 'diff'
